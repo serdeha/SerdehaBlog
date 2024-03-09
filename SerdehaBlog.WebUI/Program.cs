@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SerdehaBlog.Core.Extensions;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 using SerdehaBlog.Entity.Concrete;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -46,6 +47,7 @@ builder.Services.AddSession(options =>
 });
 
 builder.Services.AddServices();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -59,6 +61,7 @@ app.UseAuthorization();
 app.UseSession();
 
 
-app.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute("default", "{controller=Blog}/{action=Index}/{id?}");
+app.MapControllerRoute("article", "{title}/{articleId}", new { controller = "Blog", action = "ReadMore", Area = "" });
 
 app.Run();

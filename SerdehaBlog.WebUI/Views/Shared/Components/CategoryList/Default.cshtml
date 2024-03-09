@@ -1,0 +1,13 @@
+﻿@model List<ListCategoryDto>
+
+<div class="blog_widget_list mb-50">
+    <h3>Kategoriler</h3>
+    <div class="widget_category blog_widget_category">
+        <ul>
+            @foreach(var category in Model)
+            {
+                <li><a href="#"><i class="icofont-rounded-double-right"></i> @category.Name </a></li>
+            }            
+        </ul>
+    </div>
+</div>

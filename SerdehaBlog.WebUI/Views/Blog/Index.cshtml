@@ -1,0 +1,47 @@
+﻿@model IPagedList<ListArticleDto>
+
+@{
+    ViewData["Title"] = "Anasayfa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+    <div class="blog_page_wrapper">
+        <div class="blog_page_inner">
+            @foreach (var article in Model)
+            {
+                <div class="single_blog d-flex align-items-center">
+                    <div class="blog_thumb">
+                        <a href="@Url.FriendlyUrlHelper(article.Title!)/@article.Id"><img width="200" height="200" src="~/blog/post/@article.ThumbnailPath" alt="@article.Title"></a>
+                    </div>
+                    <div class="blog_content">
+                        <div class="blog_date">
+                            <span><i class="icofont-calendar"></i></span>  <span class="blogDate">@article.Date.ToString("dd MMMM yyyy")</span>
+                        </div>
+                        <h3>
+                            <a href="@Url.FriendlyUrlHelper(article.Title!)/@article.Id">
+                                @article.Title
+                            </a>
+                        </h3>
+                        <a href="@Url.FriendlyUrlHelper(article.Title!)/@article.Id">Hepsini Oku</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="pagination pagination_pages">
+            @if (Model.PageCount > 0)
+            {
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", "Blog", new { page }), new PagedListRenderOptions
+               {
+                   ActiveLiElementClass = "current",
+                   NextElementClass = "next",
+                   LinkToPreviousPageFormat = "«",
+                   LinkToNextPageFormat = "»"
+               })
+            }
+        </div>
+    </div>
+}
+

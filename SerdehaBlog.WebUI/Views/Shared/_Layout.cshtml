@@ -1,0 +1,76 @@
+﻿<!doctype html>
+<html class="no-js" lang="tr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Blog @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
+    <meta name="description" content="@(ViewBag.ArticleDescription == null ? "Yazılım alanında kendini geliştirmek isteyenlerin yeri.": ViewBag.ArticleDescription)" />
+    <meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? "yazılım,kodlama,programlama,csharp,asp.net,asp.net core" : ViewBag.ArticleKeywords)">
+    <meta name="author" content="@(ViewBag.ArticleAuthor == null ? "Serdeha Mehmet" : ViewBag.ArticleAuthor)">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @await Html.PartialAsync("_CssPartialView")
+    @if (IsSectionDefined("Css"))
+    {
+        @await RenderSectionAsync("Css", false)
+    }
+</head>
+
+<body class="body__bg" data-bgimg="/assets/img/bg/body-bg2.webp">
+
+    @await Html.PartialAsync("_HeaderPartialView")
+
+    <!-- breadcrumbs area start -->
+    <div class="breadcrumbs_aree breadcrumbs_bg mb-140" data-bgimg="/assets/img/bg/breadcrumbs-bg.webp">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumbs_text text-center">
+                        <h1>Bloglar</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumbs area end -->
+    <!-- page wrapper start -->
+    <div class="page_wrapper">
+        <!-- blog page section start -->
+        <section class="blog_page_section mb-140">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        @RenderBody()
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="blog_sidebar blog_widget">
+                            <div class="blog_widget_list mb-50">
+                                <h3>Search Here</h3>
+                                <div class="widget_search">
+                                    <form action="#">
+                                        <input placeholder="Search here" type="text">
+                                        <button type="submit"><i class="icofont-search-1"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                           @await Component.InvokeAsync("CategoryList")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- blog page section end -->
+    </div>
+    <!-- page wrapper end -->
+    <!--footer area start-->
+    @await Html.PartialAsync("_FooterPartialView")
+    <!--footer area end-->
+    @await Html.PartialAsync("_JsPartialView")
+    @if (IsSectionDefined("Scripts"))
+    {
+        @await RenderSectionAsync("Scripts", false)
+    }
+</body>
+
+</html>
