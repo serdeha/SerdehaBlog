@@ -1,11 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Options
+@using SerdehaBlog.Entity.Concrete;
+@inject IOptions<WebsiteInfo> WebsiteInfo
+@{
+    var websiteInfo = WebsiteInfo.Value;
+}
+
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Blog @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
-    <meta name="description" content="@(ViewBag.ArticleDescription == null ? "Yazılım alanında kendini geliştirmek isteyenlerin yeri.": ViewBag.ArticleDescription)" />
-    <meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? "yazılım,kodlama,programlama,csharp,asp.net,asp.net core" : ViewBag.ArticleKeywords)">
-    <meta name="author" content="@(ViewBag.ArticleAuthor == null ? "Serdeha Mehmet" : ViewBag.ArticleAuthor)">
+    <title>@websiteInfo.Title @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
+    <meta name="description" content="@(ViewBag.ArticleDescription == null ? websiteInfo.SeoDescription: ViewBag.ArticleDescription)" />
+    <meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? websiteInfo.SeoKeywords : ViewBag.ArticleKeywords)">
+    <meta name="author" content="@(ViewBag.ArticleAuthor == null ? websiteInfo.SeoAuthor : ViewBag.ArticleAuthor)">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- STYLES -->
     @await Html.PartialAsync("_CssPartialView")
@@ -101,7 +108,7 @@
         <!-- content -->
         <div class="search-content">
             <div class="text-center">
-                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+                <h3 class="mb-4 mt-0">Çıkış Yapmak İçin ESC Tuşunu Kullanabilirsin</h3>
             </div>
             <!-- form -->
             <form class="d-flex search-form">

@@ -4,9 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using SerdehaBlog.Core.Extensions;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 using SerdehaBlog.Entity.Concrete;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+builder.Services.Configure<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
+builder.Services.ConfigureWritable<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();

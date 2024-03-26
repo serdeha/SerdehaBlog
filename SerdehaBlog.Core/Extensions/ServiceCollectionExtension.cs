@@ -1,13 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SerdehaBlog.Business.Absract;
 using SerdehaBlog.Business.Concrete;
+using SerdehaBlog.Core.Helpers.Abstract;
+using SerdehaBlog.Core.Helpers.Concrete;
 using SerdehaBlog.Data.Absract;
 using SerdehaBlog.Data.Concrete.EntityFramework.Repositories;
 using SerdehaBlog.Data.UnitOfWork;
 
 namespace SerdehaBlog.Core.Extensions
 {
-    public static class ServiceCollectionExtension
+	public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddServices(this IServiceCollection serviceCollection)
         {
@@ -25,5 +30,17 @@ namespace SerdehaBlog.Core.Extensions
 
             return serviceCollection;
         }
-    }
+
+		public static void ConfigureWritable<T>(this IServiceCollection services, IConfigurationSection section, string file = "appsettings.json") where T : class, new()
+		{
+			services.Configure<T>(section);
+			services.AddTransient<IWritableOptions<T>>(provider =>
+			{
+				var environment = provider.GetService<IHostEnvironment>();
+				var options = provider.GetService<IOptionsMonitor<T>>();
+
+				return new WritableOptions<T>(environment!, options!, section.Key, file);
+			});
+		}
+	}
 }
