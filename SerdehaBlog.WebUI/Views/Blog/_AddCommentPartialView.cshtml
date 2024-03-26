@@ -1,0 +1,36 @@
+﻿<div class="comment-form rounded bordered padding-30">
+
+    <form id="comment-form">
+
+        <input type="hidden" id="articleNumber" value="@ViewBag.ArticleId" />
+
+        <div class="messages"></div>
+
+        <div class="row">
+
+            <div class="column col-md-12" style="display:none;" id="replyCommentNameDiv">
+                <!-- Comment textarea -->
+                <div class="form-group">
+                    <a href="javascript:void(0);" id="removeReplyUser"><label id="replyCommentName"></label> <i class="icon-close icons text text-danger"></i></a>
+                </div>
+            </div>
+
+            <div class="column col-md-12">
+                <!-- Comment textarea -->
+                <div class="form-group">
+                    <textarea name="InputComment" id="CreatedByName" class="form-control" rows="4" placeholder="Yorumunuz..." required="required"></textarea>
+                </div>
+            </div>
+
+            <div class="column col-md-12">
+                <!-- Email input -->
+                <div class="form-group">
+                    <input type="text" class="form-control" id="Text" name="InputName" placeholder="İsminiz" required="required">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="buttonBlock"></div>       
+    </form>
+</div>

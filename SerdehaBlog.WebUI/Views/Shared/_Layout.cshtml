@@ -1,76 +1,134 @@
-﻿<!doctype html>
-<html class="no-js" lang="tr">
-
+﻿<!DOCTYPE html>
+<html lang="tr">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Blog @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
     <meta name="description" content="@(ViewBag.ArticleDescription == null ? "Yazılım alanında kendini geliştirmek isteyenlerin yeri.": ViewBag.ArticleDescription)" />
     <meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? "yazılım,kodlama,programlama,csharp,asp.net,asp.net core" : ViewBag.ArticleKeywords)">
     <meta name="author" content="@(ViewBag.ArticleAuthor == null ? "Serdeha Mehmet" : ViewBag.ArticleAuthor)">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- STYLES -->
     @await Html.PartialAsync("_CssPartialView")
     @if (IsSectionDefined("Css"))
     {
-        @await RenderSectionAsync("Css", false)
+        await RenderSectionAsync("Css", false);
     }
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
-<body class="body__bg" data-bgimg="/assets/img/bg/body-bg2.webp">
+<body>
 
-    @await Html.PartialAsync("_HeaderPartialView")
-
-    <!-- breadcrumbs area start -->
-    <div class="breadcrumbs_aree breadcrumbs_bg mb-140" data-bgimg="/assets/img/bg/breadcrumbs-bg.webp">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="breadcrumbs_text text-center">
-                        <h1>Bloglar</h1>
-                    </div>
-                </div>
+    <!-- preloader -->
+    <div id="preloader">
+        <div class="book">
+            <div class="inner">
+                <div class="left"></div>
+                <div class="middle"></div>
+                <div class="right"></div>
             </div>
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
         </div>
     </div>
-    <!-- breadcrumbs area end -->
-    <!-- page wrapper start -->
-    <div class="page_wrapper">
-        <!-- blog page section start -->
-        <section class="blog_page_section mb-140">
-            <div class="container">
-                <div class="row">
+
+    <!-- site wrapper -->
+    <div class="site-wrapper">
+
+        <div class="main-overlay"></div>
+
+        <!-- header -->
+        @await Html.PartialAsync("_HeaderPartialView")
+
+        @if (IsSectionDefined("CarouselPost"))
+        {
+            await RenderSectionAsync("CarouselPost", false);
+        }        
+
+        <!-- section main content -->
+        <section class="main-content">
+            <div class="container-xl">
+
+                <div class="row gy-4">
+
                     <div class="col-lg-8">
+
                         @RenderBody()
+
                     </div>
                     <div class="col-lg-4">
-                        <div class="blog_sidebar blog_widget">
-                            <div class="blog_widget_list mb-50">
-                                <h3>Search Here</h3>
-                                <div class="widget_search">
-                                    <form action="#">
-                                        <input placeholder="Search here" type="text">
-                                        <button type="submit"><i class="icofont-search-1"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                           @await Component.InvokeAsync("CategoryList")
-                        </div>
+
+                        <!-- sidebar -->
+                        @await Html.PartialAsync("_SidebarPartialView")
+
                     </div>
+
                 </div>
+
             </div>
         </section>
-        <!-- blog page section end -->
+
+
+        <!-- footer -->
+        @await Html.PartialAsync("_FooterPartialView")
+
     </div>
-    <!-- page wrapper end -->
-    <!--footer area start-->
-    @await Html.PartialAsync("_FooterPartialView")
-    <!--footer area end-->
+
+    <!-- search popup area -->
+    <div class="search-popup">
+        <!-- close button -->
+        <button type="button" class="btn-close" aria-label="Close"></button>
+        <!-- content -->
+        <div class="search-content">
+            <div class="text-center">
+                <h3 class="mb-4 mt-0">Press ESC to close</h3>
+            </div>
+            <!-- form -->
+            <form class="d-flex search-form">
+                <input class="form-control me-2" type="search" placeholder="Search and press enter ..." aria-label="Search">
+                <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- canvas menu -->
+    <div class="canvas-menu d-flex align-items-end flex-column">
+        <!-- close button -->
+        <button type="button" class="btn-close" aria-label="Kapat"></button>
+
+        <!-- logo -->
+        <div class="logo">
+            <img src="~/blog/images/logo.svg" alt="Katen" />
+        </div>
+
+        <!-- menu -->
+        @await Html.PartialAsync("_MobileMenuPartialView")
+    </div>
+
     @await Html.PartialAsync("_JsPartialView")
     @if (IsSectionDefined("Scripts"))
     {
-        @await RenderSectionAsync("Scripts", false)
+        await RenderSectionAsync("Scripts", false);
     }
 </body>
-
 </html>

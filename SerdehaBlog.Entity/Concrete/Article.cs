@@ -12,6 +12,7 @@ namespace SerdehaBlog.Entity.Concrete
         public string? SeoAuthor { get; set; }
         public string? SeoDescription { get; set; }
         public string? SeoTags { get; set; }
+        public bool IsCorousel { get; set; }
 
         public AppUser? AppUser { get; set; }
         public int AppUserId { get; set; }

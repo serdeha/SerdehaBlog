@@ -1,0 +1,45 @@
+﻿@model List<ListCommentDto>
+
+@if (Model.Count > 0)
+{
+    <div class="section-header">
+        <h3 class="section-title">Yorumlar (@Model.Count)</h3>
+        <img src="~/blog/images/wave.svg" class="wave" alt="wave">
+    </div>
+
+    <div class="comments bordered padding-30 rounded">
+
+        <ul class="comments">
+            @foreach (var comment in Model)
+            {
+                <li class="comment rounded">
+                    <div class="thumb">
+                        <img src="~/blog/images/other/comment-1.png" alt="@comment.CreatedByName">
+                    </div>
+                    <div class="details">
+                        <h4 class="name"><a href="javascript:void(0)">@comment.CreatedByName</a></h4>
+                        <span class="date">@comment.CreatedDate.ToString("dd MMMM yyyy")</span>
+                        <p>@comment.Text</p>
+                        <button id="replyComment" data-commentId="@comment.Id" data-name="@comment.CreatedByName" class="btn btn-default btn-sm">Cevapla</button>
+                    </div>
+                </li>
+                if (comment.ReplyComments != null && comment.ReplyComments.Any())
+                {
+                    @foreach (var reply in comment.ReplyComments)
+                    {
+                        <li class="comment child rounded">
+                            <div class="thumb">
+                                <img src="~/blog/images/other/comment-2.png" alt="@reply.CreatedByName">
+                            </div>
+                            <div class="details">
+                                <h4 class="name"><a href="javascript:void(0)">@reply.CreatedByName</a></h4>
+                                <span class="date">@reply.CreatedDate.ToString("dd MMMM yyyy")</span>
+                                <p>@reply.Text</p>
+                            </div>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+}

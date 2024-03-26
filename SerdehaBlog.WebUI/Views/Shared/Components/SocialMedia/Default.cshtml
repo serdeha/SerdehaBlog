@@ -1,0 +1,14 @@
+﻿@model List<ListSocialMediaDto>
+
+@if(Model.Count > 0)
+{
+	<div class="col-md-8 d-none d-md-block">
+		<!-- social icons -->
+		<ul class="social-icons list-unstyled list-inline mb-0 float-end">
+			@foreach(var socialMedia in Model)
+			{
+				<li class="list-inline-item"><a href="@socialMedia.Url"><i class="@socialMedia.Icon"></i></a></li>
+			}			
+		</ul>
+	</div>
+}

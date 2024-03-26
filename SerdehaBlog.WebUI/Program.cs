@@ -9,7 +9,6 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
-builder.Services.AddDbContext<SerdehaBlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SerdehaBlog")));
 builder.Services.AddRazorPages();
 builder.Services.AddIdentity<AppUser,AppRole>(options =>
 {
@@ -39,6 +38,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
     options.ExpireTimeSpan = TimeSpan.FromDays(14);
 });
+builder.Services.AddDbContext<SerdehaBlogDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SerdehaBlog")));
+builder.Services.AddServices();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromDays(14);
@@ -46,7 +47,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
 });
 
-builder.Services.AddServices();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();

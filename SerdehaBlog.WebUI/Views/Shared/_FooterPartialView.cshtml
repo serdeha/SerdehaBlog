@@ -1,25 +1,23 @@
-﻿<footer class="footer_widgets">
-    <div class="footer_bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="footer_bottom_inner d-flex justify-content-between">
-                        <div class="copyright_right">
-                            <p> © @DateTime.Now.Year  Serdeha  tarafından  <i class="icofont-heart"></i>  ile yapıldı.</p>
-                        </div>
-                        <div class="footer_bottom_link_menu">
-                            <ul class="d-flex">
-                                <li><a href="about.html">Şartlar & Koşullar  </a></li>
-                                <li><a href="about.html">Gizlilik Sözleşmesi  </a></li>
-                            </ul>
-                        </div>
+﻿<footer>
+	<div class="container-xl">
+		<div class="footer-inner">
+			<div class="row d-flex align-items-center gy-4">
+				<!-- copyright text -->
+				<div class="col-md-4">
+					<span class="copyright">© 2024 @(DateTime.Now.Year == 2024 ? "" : $"- {DateTime.Now.Year}") Serdeha tarafından <i class="icon-heart icons text-danger"></i> ile yazıldı.</span>
+				</div>
 
-                        <div class="scroll__top_icon">
-                            <a id="scroll-top" href="#"><img aria-label="scroll-top" width="46" height="40" src="~/assets/img/icon/scroll-top.webp" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+				<!-- social icons -->
+				<div class="col-md-4 text-center">
+					<ul class="social-icons list-unstyled list-inline mb-0">
+					</ul>
+				</div>
+
+				<!-- go to top button -->
+				<div class="col-md-4">
+					<a href="#" id="return-to-top" class="float-md-end"><i class="icon-arrow-up"></i>Yukarı Çık</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </footer>

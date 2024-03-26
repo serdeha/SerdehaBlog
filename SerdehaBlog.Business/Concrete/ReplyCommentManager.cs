@@ -23,13 +23,15 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task AddAsync(ReplyComment entity)
+        public async Task<int> AddAsync(ReplyComment entity)
         {
             if (entity != null)
             {
                 await _unitOfWork.ReplyComment.AddAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
 
         public void Delete(ReplyComment entity)
@@ -43,15 +45,17 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task DeleteAsync(ReplyComment entity)
+        public async Task<int> DeleteAsync(ReplyComment entity)
         {
             if (entity != null)
             {
                 entity.IsActive = false;
                 entity.IsDeleted = true;
                 await _unitOfWork.ReplyComment.DeleteAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
 
         public List<ReplyComment> GetAll(Expression<Func<ReplyComment, bool>>? filter = null)
@@ -127,13 +131,15 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task UpdateAsync(ReplyComment entity)
+        public async Task<int> UpdateAsync(ReplyComment entity)
         {
            if(entity != null)
             {
                 await _unitOfWork.ReplyComment.UpdateAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
     }
 }

@@ -1,51 +1,61 @@
 ﻿@model DetailArticleDto
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string[] tags = Model.SeoTags!.Split(',');
 }
 
-<div class="blog_details_inner">
-    <div class="blog_details_header text-center">
-        <div class="blog__meta_date">
-            <ul class="d-flex justify-content-center">
-                <li><span>By</span> @Model.SeoAuthor </li>
-                <li> @Model.Date.ToString("dd MMMM yyyy")  </li>
-                <li>@(Model.Content!.Length/250) dk okuma</li>
-            </ul>
-        </div>
-        <div class="blog_details_title">
-            <h2>
-                @Model.Title
-            </h2>
-        </div>
-        @{
-            string[] tags = Model.SeoTags!.Split(',');
-        }
-        @if (tags.Any())
-        {
-            <div class="widget_tags">
-                <ul>
-                    @for(int i = 0;i < 4; i++)
-                    {
-                        <li><a href="#">@tags[i]</a></li>
-                    }
-                </ul>
-            </div>
-        }        
+@section Css {
+    <link href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-bulma@5.0.16/bulma.min.css" rel="stylesheet">
+}
+
+<!-- post single -->
+<div class="post post-single">
+    <!-- post header -->
+    <div class="post-header">
+        <h1 class="title mt-0 mb-3">@Model.Title</h1>
+        <ul class="meta list-inline mb-0">
+            <li class="list-inline-item"><img src="~/blog/images/other/author-sm.png" class="author" alt="@Model.CreatedByName">@Model.CreatedByName</li>
+            <li class="list-inline-item"><a asp-controller="Blog" asp-action="Index" asp-route-kategori="@Model.CategoryId">@Model.CategoryName</a></li>
+            <li class="list-inline-item">@Model.Date.ToString("dd MMMM yyyy")</li>
+        </ul>
     </div>
-    <div class="blog_sticky_thumb">
-        <img width="1170" height="550" src="~/blog/post/@Model.ThumbnailPath" alt="@Model.Title">
+    <!-- featured image -->
+    <div class="featured-image">
+        <img src="~/blog/images/posts/featured-lg.jpg" alt="@Model.Title">
     </div>
-    <div class="blog_details_content p-0">
+    <!-- post content -->
+    <div class="post-content clearfix">
         @Html.Raw(Model.Content)
-        <div class="post__social d-flex justify-content-between align-items-center">
-            <h3>Sosyal Medya Hesaplarım</h3>
-            <ul class="d-flex">
-                <li><a href="https://www.facebook.com"><i class="icofont-facebook"></i></a></li>
-                <li><a href="https://www.skype.com"><i class="icofont-skype"></i></a></li>
-                <li><a href="https://twitter.com"><i class="icofont-twitter"></i></a></li>
-                <li><a href="https://www.linkedin.com"><i class="icofont-linkedin"></i></a></li>
-            </ul>
+    </div>
+    <!-- post bottom section -->
+    <div class="post-bottom">
+        <div class="row d-flex align-items-center">
+            <div class="col-md-12 col-12 text-center text-md-start">
+                @foreach (var tag in tags)
+                {
+                    <a href="#" class="tag">#@tag</a>
+                }
+            </div>
         </div>
     </div>
 </div>
 
+<div class="spacer" data-height="50" style="height: 50px;"></div>
+
+<!-- post comments -->
+@await Component.InvokeAsync("CommentList", new { articleId = Model.Id })
+
+<div class="spacer" data-height="50" style="height: 50px;"></div>
+
+<!-- section header -->
+<div class="section-header">
+    <h3 class="section-title">Bir Yorum Bırak</h3>
+    <img src="~/blog/images/wave.svg" class="wave" alt="wave">
+</div>
+<!-- comment form -->
+@await Html.PartialAsync("_AddCommentPartialView")
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+    <script src="~/frontend/js/comment.js"></script>
+}

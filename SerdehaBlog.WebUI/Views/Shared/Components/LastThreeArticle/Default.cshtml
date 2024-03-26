@@ -1,0 +1,37 @@
+﻿@model List<ListArticleDto>
+@{
+	int articleCount = 1;
+}
+
+@if (Model.Count > 0)
+{
+	
+
+	<div class="widget rounded">
+		<div class="widget-header text-center">
+			<h3 class="widget-title">En Son Paylaştıklarım</h3>
+			<img src="~/blog/images/wave.svg" class="wave" alt="wave" />
+		</div>
+		<div class="widget-content">
+			@foreach (var article in Model)
+			{
+				<div class="post post-list-sm circle">
+					<div class="thumb circle">
+						<span class="number">@(articleCount++)</span>
+						<a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id">
+							<div class="inner">
+								<img src="~/blog/images/posts/tabs-1.jpg" alt="@article.Title" />
+							</div>
+						</a>
+					</div>
+					<div class="details clearfix">
+						<h6 class="post-title my-0"><a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id">@article.Title</a></h6>
+						<ul class="meta list-inline mt-1 mb-0">
+							<li class="list-inline-item">@article.Date.ToString("dd MMMM yyyy")</li>
+						</ul>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+}

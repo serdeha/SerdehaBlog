@@ -21,6 +21,7 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Configurations
 
             builder.HasMany(x => x.Articles).WithOne(x => x.AppUser).HasForeignKey(x => x.AppUserId);
             builder.HasMany(x => x.Categories).WithOne(x => x.AppUser).HasForeignKey(x => x.AppUserId);
+            builder.HasMany(x => x.SocialMedias).WithOne(x => x.AppUser).HasForeignKey(x => x.AppUserId);
 
             AppUser user = new AppUser
             {

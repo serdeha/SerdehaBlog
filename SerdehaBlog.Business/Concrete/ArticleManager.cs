@@ -23,13 +23,15 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task AddAsync(Article entity)
+        public async Task<int> AddAsync(Article entity)
         {
             if(entity != null)
             {
                 await _unitOfWork.Article.AddAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
 
         public void Delete(Article entity)
@@ -43,15 +45,17 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task DeleteAsync(Article entity)
+        public async Task<int> DeleteAsync(Article entity)
         {
             if (entity != null)
             {
                 entity.IsActive = false;
                 entity.IsDeleted = true;
                 await _unitOfWork.Article.DeleteAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
 
         public List<Article> GetAll(Expression<Func<Article, bool>>? filter = null)
@@ -79,7 +83,12 @@ namespace SerdehaBlog.Business.Concrete
             return await _unitOfWork.Article.GetByIdAsync(x=>x.Id == entityId);
         }
 
-        public int GetCount(Expression<Func<Article, bool>>? filter = null)
+		public async Task<List<Article>> GetCarouselArticleAsync(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties)
+		{
+            return await _unitOfWork.Article.GetCarouselArticleAsync(predicate, includeProperties);
+		}
+
+		public int GetCount(Expression<Func<Article, bool>>? filter = null)
         {
             return filter == null ? _unitOfWork.Article.GetCount() : _unitOfWork.Article.GetCount(filter);
         }
@@ -87,6 +96,11 @@ namespace SerdehaBlog.Business.Concrete
         public async Task<int> GetCountAsync(Expression<Func<Article, bool>>? filter = null)
         {
             return filter == null ? await _unitOfWork.Article.GetCountAsync() : await _unitOfWork.Article.GetCountAsync(filter);
+        }
+
+        public Task<List<Article>> GetLastThreeArticleAsync(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties)
+        {
+            return _unitOfWork.Article.GetLastThreeArticleAsync(predicate, includeProperties);
         }
 
         public Article? GetWithFilter(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties)
@@ -127,13 +141,15 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task UpdateAsync(Article entity)
+        public async Task<int> UpdateAsync(Article entity)
         {
             if(entity != null)
             {
                 await _unitOfWork.Article.UpdateAsync(entity);
-                await _unitOfWork.SaveChangesAsync();
+                return await _unitOfWork.SaveChangesAsync();
             }
+
+            return 0;
         }
     }
 }

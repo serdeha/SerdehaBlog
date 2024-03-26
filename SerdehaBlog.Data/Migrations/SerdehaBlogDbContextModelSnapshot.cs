@@ -236,7 +236,7 @@ namespace SerdehaBlog.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d9cfe51e-73a4-4707-a60f-162286866b6f",
+                            ConcurrencyStamp = "4ec0e8fe-4a97-4e1a-9b77-d14a69d75c1c",
                             Email = "serdehablog@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -245,10 +245,10 @@ namespace SerdehaBlog.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SERDEHABLOG@GMAIL.COM",
                             NormalizedUserName = "SERDEHA",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFvqj9NdCL4GTAtwWYzRWogQh3NHy+1Cj11sLhZN/R5jU7Zbdnll9jsr5hHgHQTRVQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAELrriQEEwsmiaAXzAbFbuIQONbwzkR8vH069DinJZ9FhZftS48CNtLEqXYIBm+EDOw==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "b41b6513-6e3b-4d89-bb67-7b8f5f903735",
+                            SecurityStamp = "6dc2f695-4e2f-4404-9fe4-7171a38e9690",
                             TwoFactorEnabled = false,
                             UserName = "serdeha"
                         });
@@ -284,6 +284,9 @@ namespace SerdehaBlog.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsCorousel")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
@@ -342,12 +345,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 1,
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6826),
-                            Date = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6827),
+                            CreatedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7025),
+                            Date = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7026),
                             IsActive = true,
+                            IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6825),
+                            ModifiedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7023),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Lorem Makalesi hakkında detaylar",
@@ -363,12 +367,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 2,
                             Content = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6834),
-                            Date = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6834),
+                            CreatedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7032),
+                            Date = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7033),
                             IsActive = true,
+                            IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(6833),
+                            ModifiedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(7031),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Its Long Day Makalesi hakkında detaylar",
@@ -433,11 +438,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 1,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(8385),
+                            CreatedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(9075),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(8387),
+                            ModifiedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(9076),
                             Name = "Teknoloji",
                             Note = "Teknoloji postlarının paylaşıldığı kategori"
                         },
@@ -446,11 +451,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 2,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(8389),
+                            CreatedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(9080),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 3, 7, 16, 50, 21, 707, DateTimeKind.Local).AddTicks(8390),
+                            ModifiedDate = new DateTime(2024, 3, 21, 22, 20, 0, 774, DateTimeKind.Local).AddTicks(9081),
                             Name = "Yazılım",
                             Note = "Yazılım postlarının paylaşıldığı kategori"
                         });
@@ -560,6 +565,62 @@ namespace SerdehaBlog.Data.Migrations
                     b.ToTable("ReplyComments", (string)null);
                 });
 
+            modelBuilder.Entity("SerdehaBlog.Entity.Concrete.SocialMedia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("ModifiedByName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("SocialMedia", (string)null);
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("SerdehaBlog.Entity.Concrete.AppRole", null)
@@ -616,7 +677,6 @@ namespace SerdehaBlog.Data.Migrations
                     b.HasOne("SerdehaBlog.Entity.Concrete.AppUser", "AppUser")
                         .WithMany("Articles")
                         .HasForeignKey("AppUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SerdehaBlog.Entity.Concrete.Category", "Category")
@@ -661,11 +721,23 @@ namespace SerdehaBlog.Data.Migrations
                     b.Navigation("Comment");
                 });
 
+            modelBuilder.Entity("SerdehaBlog.Entity.Concrete.SocialMedia", b =>
+                {
+                    b.HasOne("SerdehaBlog.Entity.Concrete.AppUser", "AppUser")
+                        .WithMany("SocialMedias")
+                        .HasForeignKey("AppUserId")
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("SerdehaBlog.Entity.Concrete.AppUser", b =>
                 {
                     b.Navigation("Articles");
 
                     b.Navigation("Categories");
+
+                    b.Navigation("SocialMedias");
                 });
 
             modelBuilder.Entity("SerdehaBlog.Entity.Concrete.Article", b =>

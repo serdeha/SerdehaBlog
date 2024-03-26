@@ -18,15 +18,16 @@ namespace SerdehaBlog.WebUI.Controllers
             _mapper = mapper;
         }
 
-        public async Task<IActionResult> Index(int? categoryId, int page = 1)
+        
+        public async Task<IActionResult> Index(int? kategori, int sayfa = 1)
         {
-            List<Article> article = categoryId.HasValue ?
-                await _unitOfWork.Article.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.CategoryId == categoryId.Value, x => x.Category!) :
+            List<Article> article = kategori.HasValue ?
+                await _unitOfWork.Article.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.CategoryId == kategori.Value, x => x.Category!) :
                 await _unitOfWork.Article.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted, x => x.Category!);
 
             List<ListArticleDto> articleResults = _mapper.Map<List<ListArticleDto>>(article);
 
-            return View(await articleResults.OrderByDescending(x=>x.Date).ToPagedListAsync(page, 1));
+            return View(await articleResults.OrderByDescending(x=>x.Date).ToPagedListAsync(sayfa, 1));
         }
 
         public async Task<IActionResult> ReadMore(int articleId)
@@ -35,6 +36,7 @@ namespace SerdehaBlog.WebUI.Controllers
 
             if(article != null)
             {
+                ViewBag.ArticleId = articleId;
                 ViewBag.Title = article.Title;
                 ViewBag.ArticleDescription = article.SeoDescription;
                 ViewBag.ArticleKeywords = article.SeoTags;

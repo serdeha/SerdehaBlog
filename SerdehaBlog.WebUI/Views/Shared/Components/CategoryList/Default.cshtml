@@ -1,13 +1,20 @@
 ﻿@model List<ListCategoryDto>
 
-<div class="blog_widget_list mb-50">
-    <h3>Kategoriler</h3>
-    <div class="widget_category blog_widget_category">
-        <ul>
-            @foreach(var category in Model)
-            {
-                <li><a href="#"><i class="icofont-rounded-double-right"></i> @category.Name </a></li>
-            }            
-        </ul>
-    </div>
-</div>
+
+@if(Model.Count > 0)
+{
+	<div class="widget rounded">
+		<div class="widget-header text-center">
+			<h3 class="widget-title">Kategoriler</h3>
+			<img src="~/blog/images/wave.svg" class="wave" alt="wave" />
+		</div>
+		<div class="widget-content">
+			<ul class="list">
+				@foreach(var category in Model)
+				{
+					<li><a asp-controller="Blog" asp-action="Index" asp-route-kategori="@category.Id">@category.Name</a><span>(@category.ArticleCount)</span></li>
+				}				
+			</ul>
+		</div>
+	</div>
+}

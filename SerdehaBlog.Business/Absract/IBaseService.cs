@@ -9,9 +9,9 @@ namespace SerdehaBlog.Business.Absract
         void Update(T entity);
         void Delete(T entity);
         void HardDelete(T entity);
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
+        Task<int> AddAsync(T entity);
+        Task<int> UpdateAsync(T entity);
+        Task<int> DeleteAsync(T entity);
         Task<int> HardDeleteAsync(T entity);
         List<T> GetAll(Expression<Func<T, bool>>? filter = null);
         List<T> GetAllWithFilter(Expression<Func<T, bool>>? predicate = null, params Expression<Func<T, object>>[] includeProperties);

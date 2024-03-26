@@ -19,7 +19,9 @@ namespace SerdehaBlog.Core.Extensions
             serviceCollection.AddScoped<ICommentRepository, EfCommentRepository>();
             serviceCollection.AddScoped<ICommentService, CommentManager>();
             serviceCollection.AddScoped<IReplyCommentRepository, EfReplyCommentRepository>();
-            serviceCollection.AddScoped<IReplyCommentService, ReplyCommentManager>();            
+            serviceCollection.AddScoped<IReplyCommentService, ReplyCommentManager>();
+            serviceCollection.AddScoped<ISocialMediaRepository, EfSocialMediaRepository>();
+            serviceCollection.AddScoped<ISocialMediaService, SocialMediaManager>();
 
             return serviceCollection;
         }

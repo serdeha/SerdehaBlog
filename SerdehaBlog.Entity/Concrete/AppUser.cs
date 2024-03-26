@@ -10,5 +10,6 @@ namespace SerdehaBlog.Entity.Concrete
 
         public List<Article>? Articles { get; set; }
         public List<Category>? Categories { get; set; }
+        public List<SocialMedia>? SocialMedias { get; set; }
     }
 }
