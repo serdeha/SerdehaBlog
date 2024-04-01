@@ -1,0 +1,219 @@
+﻿@using Microsoft.Extensions.Options
+@using SerdehaBlog.Entity.Concrete;
+@inject IOptions<WebsiteInfo> WebsiteInfo
+@inject IOptions<ContactInfo> ContactInfo;
+@{
+	var websiteInfo = WebsiteInfo.Value;
+	var contactInfo = ContactInfo.Value;
+}
+@{
+	ViewData["Title"] = "İletişim";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>@websiteInfo.Title @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
+	<meta name="description" content="@(ViewBag.ArticleDescription == null ? websiteInfo.SeoDescription: ViewBag.ArticleDescription)" />
+	<meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? websiteInfo.SeoKeywords : ViewBag.ArticleKeywords)">
+	<meta name="author" content="@(ViewBag.ArticleAuthor == null ? websiteInfo.SeoAuthor : ViewBag.ArticleAuthor)">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- STYLES -->
+	<link rel="stylesheet" href="~/blog/css/bootstrap.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="~/blog/css/all.min.css" type="text/css" media="all">
+	<link rel="stylesheet" href="~/blog/css/slick.css" type="text/css" media="all">
+	<link rel="stylesheet" href="~/blog/css/simple-line-icons.css" type="text/css" media="all">
+	<link rel="stylesheet" href="~/blog/css/style.css" type="text/css" media="all">
+	<link href="https://cdn.jsdelivr.net/npm/@@sweetalert2/theme-bulma@5.0.16/bulma.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- preloader -->
+	<div id="preloader">
+		<div class="book">
+			<div class="inner">
+				<div class="left"></div>
+				<div class="middle"></div>
+				<div class="right"></div>
+			</div>
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+
+	<!-- site wrapper -->
+	<div class="site-wrapper">
+
+		<div class="main-overlay"></div>
+
+		<!-- header -->
+		@await Html.PartialAsync("_HeaderForContactPartialView")
+
+		<!-- page header -->
+		<section class="page-header">
+			<div class="container-xl">
+				<div class="text-center">
+					<h1 class="mt-0 mb-2">@contactInfo.Title</h1>
+				</div>
+			</div>
+		</section>
+
+		<!-- section main content -->
+		<section class="main-content">
+			<div class="container-xl">
+
+				<div class="row">
+
+					@if (!string.IsNullOrEmpty(contactInfo.PhoneValue))
+					{
+						<div class="col-md-4">
+							<!-- contact info item -->
+							<div class="contact-item bordered rounded d-flex align-items-center">
+								<span class="icon icon-phone"></span>
+								<div class="details">
+									<h3 class="mb-0 mt-0">@contactInfo.Phone</h3>
+									<p class="mb-0">+@contactInfo.PhoneValue</p>
+								</div>
+							</div>
+							<div class="spacer d-md-none d-lg-none" data-height="30"></div>
+						</div>
+					}
+					
+					@if (!string.IsNullOrEmpty(contactInfo.EmailValue))
+					{
+						<div class="col-md-4">
+							<!-- contact info item -->
+							<div class="contact-item bordered rounded d-flex align-items-center">
+								<span class="icon icon-envelope-open"></span>
+								<div class="details">
+									<h3 class="mb-0 mt-0">@contactInfo.Email</h3>
+									<p class="mb-0">@contactInfo.EmailValue</p>
+								</div>
+							</div>
+							<div class="spacer d-md-none d-lg-none" data-height="30"></div>
+						</div>
+					}					
+
+					@if (!string.IsNullOrEmpty(contactInfo.LocationValue))
+					{
+						<div class="col-md-4">
+							<!-- contact info item -->
+							<div class="contact-item bordered rounded d-flex align-items-center">
+								<span class="icon icon-map"></span>
+								<div class="details">
+									<h3 class="mb-0 mt-0">@contactInfo.Location</h3>
+									<p class="mb-0">@contactInfo.LocationValue</p>
+								</div>
+							</div>
+						</div>
+					}					
+
+				</div>
+
+				<div class="spacer" data-height="50"></div>
+
+				<!-- section header -->
+				<div class="section-header">
+					<h3 class="section-title">@contactInfo.Subtitle</h3>
+					<img src="~/blog/images/wave.svg" class="wave" alt="wave" />
+				</div>
+
+				<!-- Contact Form -->
+				<form id="contact-form" class="contact-form" method="post">
+
+					<div class="messages"></div>
+
+					<div class="row">
+						<div class="column col-md-6">
+							<!-- Name input -->
+							<div class="form-group">
+								<input type="text" class="form-control" id="name" placeholder="İsminiz" required="required" data-error="İsim alanını doldurmanız gerekli.">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+
+						<div class="column col-md-6">
+							<!-- Email input -->
+							<div class="form-group">
+								<input type="email" class="form-control" id="email" placeholder="Email adresiniz" required="required" data-error="Email alanını doldurmanız gerekli.">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+
+						<div class="column col-md-12">
+							<!-- Email input -->
+							<div class="form-group">
+								<input type="text" class="form-control" id="subject" placeholder="Konu" required="required" data-error="Konu alanını doldurmanız gerekli.">
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+
+						<div class="column col-md-12">
+							<!-- Message textarea -->
+							<div class="form-group">
+								<textarea name="InputMessage" id="text" class="form-control" rows="4" placeholder="Mesajınız" required="required" data-error="Mesaj alanını doldurmanız gerekli."></textarea>
+								<div class="help-block with-errors"></div>
+							</div>
+						</div>
+					</div>
+
+					<button type="button" id="sendContact" class="btn btn-default">Mesaj Gönder</button>
+
+				</form>
+				<!-- Contact Form end -->
+			</div>
+		</section>
+
+		<!-- footer -->
+		@await Html.PartialAsync("_FooterPartialView")
+
+	</div><!-- end site wrapper -->
+	<!-- search popup area -->
+	@await Html.PartialAsync("_SearchPopupPartialView")
+
+	<!-- canvas menu -->
+	<div class="canvas-menu d-flex align-items-end flex-column">
+		<!-- close button -->
+		<button type="button" class="btn-close" aria-label="Kapat"></button>
+
+		<!-- logo -->
+		<div class="logo">
+			<img src="~/blog/images/logo.svg" alt="Serdeha" />
+		</div>
+
+		<!-- menu -->
+		@await Html.PartialAsync("_MobileMenuPartialView")
+	</div>
+
+	
+	<script src="~/blog/js/jquery.min.js"></script>
+	<script src="~/blog/js/popper.min.js"></script>
+	<script src="~/blog/js/bootstrap.min.js"></script>
+	<script src="~/blog/js/slick.min.js"></script>
+	<script src="~/blog/js/jquery.sticky-sidebar.min.js"></script>
+	<script src="~/blog/js/custom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.7/dist/sweetalert2.all.min.js"></script>
+    <script src="~/frontend/js/contact.js"></script>
+</body>
+</html>

@@ -17,6 +17,7 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Contexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<ReplyComment> ReplyComments { get; set; }
         public DbSet<SocialMedia> SocialMedias { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -26,7 +27,8 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Contexts
             builder.ApplyConfiguration(new CommentConfiguration());
             builder.ApplyConfiguration(new ReplyCommentConfiguration());
             builder.ApplyConfiguration(new SocialMediaConfiguration());
-            base.OnModelCreating(builder);
+            builder.ApplyConfiguration(new ContactConfiguration());
+			base.OnModelCreating(builder);
         }
     }
 }

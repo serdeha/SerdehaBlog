@@ -10,13 +10,13 @@
 					<div class="post featured-post-xl">
 						<div class="details clearfix">
 							<a asp-controller="Blog" asp-action="Index" asp-route-kategori="@carouselArticle.CategoryId" class="category-badge lg">@carouselArticle.CategoryName</a>
-							<h4 class="post-title"><a href="@Url.FriendlyUrlHelper(carouselArticle.Title!)/@carouselArticle.Id">@carouselArticle.Title</a></h4>
+							<h4 class="post-title"><a href="/@Url.FriendlyUrlHelper(carouselArticle.Title!)/@carouselArticle.Id">@carouselArticle.Title</a></h4>
 							<ul class="meta list-inline mb-0">
 								<li class="list-inline-item">@carouselArticle.CreatedByName</li>
 								<li class="list-inline-item">@carouselArticle.Date.ToString("dd MMMM yyyy")</li>
 							</ul>
 						</div>
-						<a href="@Url.FriendlyUrlHelper(carouselArticle.Title!)/@carouselArticle.Id">
+						<a href="/@Url.FriendlyUrlHelper(carouselArticle.Title!)/@carouselArticle.Id">
 							<div class="thumb rounded">
 								<div class="inner data-bg-image" data-bg-image="~/blog/images/posts/featured-xl-1.jpg"></div>
 							</div>

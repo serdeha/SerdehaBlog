@@ -1,0 +1,15 @@
+﻿<div class="search-popup">
+    <!-- close button -->
+    <button type="button" class="btn-close" aria-label="Kapat"></button>
+    <!-- content -->
+    <div class="search-content">
+        <div class="text-center">
+            <h3 class="mb-4 mt-0">Çıkış Yapmak İçin ESC Tuşunu Kullanabilirsin</h3>
+        </div>
+        <!-- form -->
+        <form class="d-flex search-form" asp-controller="Blog" asp-action="Ara" asp-area="" method="post">
+            <input class="form-control me-2" name="kelime" type="search" placeholder="Kelime arayın..." aria-label="Ara">
+            <button class="btn btn-default btn-lg" type="submit"><i class="icon-magnifier"></i></button>
+        </form>
+    </div>
+</div>

@@ -7,12 +7,11 @@ using SerdehaBlog.Business.Validations;
 using SerdehaBlog.Entity.Concrete;
 using SerdehaBlog.WebUI.Dtos.CommentDto;
 using SerdehaBlog.WebUI.Dtos.ReplyCommentDto;
-using SerdehaBlog.Data.Absract;
 using SerdehaBlog.Business.Absract;
 
 namespace SerdehaBlog.WebUI.Controllers
 {
-	public class CommentController : Controller
+    public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
         private readonly IReplyCommentService _replyCommentService;
@@ -40,7 +39,15 @@ namespace SerdehaBlog.WebUI.Controllers
                     ReferenceHandler = ReferenceHandler.Preserve
                 });
             }
-            return Json(new { ResultStatus = false });
+
+
+            string errors = string.Empty;
+            foreach(var error in result.Errors)
+            {
+                errors += $"*{error.ErrorMessage}<br>";
+            }
+
+            return Json(new { ResultStatus = false, ErrorMessages = errors });
         }
 
         [HttpPost]
@@ -59,7 +66,13 @@ namespace SerdehaBlog.WebUI.Controllers
 				});
 			}
 
-            return Json(new { ResultStatus = false });
+            string errors = string.Empty;
+            foreach (var error in result.Errors)
+            {
+                errors += $"*{error.ErrorMessage}<br>";
+            }
+
+            return Json(new { ResultStatus = false, ErrorMessages = errors });
         }
     }
 }

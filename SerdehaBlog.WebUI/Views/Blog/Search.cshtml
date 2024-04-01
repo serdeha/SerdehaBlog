@@ -1,0 +1,78 @@
+﻿@model IPagedList<ListArticleDto>
+
+@{
+    ViewData["Title"] = "Makale Ara";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Count > 0)
+{
+	@section CarouselPost {
+		@await Component.InvokeAsync("CarouselPost")
+	}
+
+	@foreach (var article in Model)
+	{
+		<div class="post post-classic rounded bordered">
+			<div class="thumb top-rounded">
+				<a asp-controller="Blog" asp-action="Index" asp-route-kategori="@article.CategoryId" class="category-badge lg position-absolute">@article.CategoryName</a>
+				<a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id">
+					<div class="inner">
+						<img src="~/blog/images/posts/post-lg-1.jpg" alt="@article.Title" />
+					</div>
+				</a>
+			</div>
+			<div class="details">
+				<ul class="meta list-inline mb-0">
+					<li class="list-inline-item"><a href="#"><img src="~/blog/images/other/author-sm.png" class="author" alt="author" />@article.CreatedByName</a></li>
+					<li class="list-inline-item">@article.Date.ToString("dd MMMM yyyy")</li>
+				</ul>
+				<h5 class="post-title mb-3 mt-3"><a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id">@article.Title</a></h5>
+				<p class="excerpt mb-0">
+					@{
+						string content = article.Content!.Substring(0, 99);
+						int lastSpaceIndex = content.LastIndexOf(' ');
+						string trimmedContent = content.Substring(0, lastSpaceIndex);
+					}
+					@RemoveHtmlExtension.RemoveHtml(trimmedContent) ...
+				</p>
+			</div>
+			<div class="post-bottom clearfix d-flex align-items-center">
+				<div class="float-end d-none d-md-block">
+					<a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id" class="more-link">Devamını Oku<i class="icon-arrow-right"></i></a>
+				</div>
+				<div class="more-button d-block d-md-none float-end">
+					<a href="/@Url.FriendlyUrlHelper(article.Title!)/@article.Id"><span class="icon-options"></span></a>
+				</div>
+			</div>
+		</div>
+
+		<nav>
+			@if (Model.PageCount > 1)
+			{
+				@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Search", "Blog", new { sayfa }), new PagedListRenderOptions
+				{
+					UlElementClasses = new[] { "pagination", "justify-content-center" },
+					LiElementClasses = new[] { "page-item" },
+					ActiveLiElementClass = "active",
+					LinkToPreviousPageFormat = "«",
+					LinkToNextPageFormat = "»",
+					PageClasses = new[] { "page-link" },
+					MaximumPageNumbersToDisplay = 5
+				})
+			}
+		</nav>
+	}
+}
+else
+{
+	@section CarouselPost {
+		@await Component.InvokeAsync("CarouselPost")
+	}
+
+	<div>
+		<h1>Aradığınız kelime ile alakalı herhangi bir makale bulunamadı.</h1>
+		<a asp-controller ="Blog" asp-action="Index" asp-area="" class="btn btn-default">Geri Dön</a>
+	</div>
+}
+

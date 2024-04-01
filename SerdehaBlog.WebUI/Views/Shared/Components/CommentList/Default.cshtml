@@ -9,7 +9,7 @@
 
     <div class="comments bordered padding-30 rounded">
 
-        <ul class="comments">
+        <ul class="comments" id="commentList">
             @foreach (var comment in Model)
             {
                 <li class="comment rounded">
@@ -18,6 +18,7 @@
                     </div>
                     <div class="details">
                         <h4 class="name"><a href="javascript:void(0)">@comment.CreatedByName</a></h4>
+
                         <span class="date">@comment.CreatedDate.ToString("dd MMMM yyyy")</span>
                         <p>@comment.Text</p>
                         <button id="replyComment" data-commentId="@comment.Id" data-name="@comment.CreatedByName" class="btn btn-default btn-sm">Cevapla</button>

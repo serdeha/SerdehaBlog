@@ -9,7 +9,9 @@ namespace SerdehaBlog.WebUI.Profiles
         public CommentProfile()
         {
             CreateMap<Comment, ListCommentDto>().ReverseMap();
-            CreateMap<Comment, AddCommentDto>().ReverseMap();
+            CreateMap<Comment, AddCommentDto>()
+                .ForMember(dest => dest.IsActive,opt => opt.MapFrom(src=> src.IsActive ? false : src.IsActive))
+                .ReverseMap();
         }
     }
 }

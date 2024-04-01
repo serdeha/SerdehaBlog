@@ -22,14 +22,52 @@ $(document).on('click', '#btnSendComment', function (event) {
             data: { addCommentDto: comment },
             dataType: 'json',
             success: function (response) {
+
+                if (response.resultStatus === false) {
+                    Swal.fire({
+                        title: "Lütfen Boş Alanları Doldurunuz.",
+                        html: `<p class='text text-danger'>${response.errorMessages}<p>`,
+                        icon: "error",
+                        color: '#000000',
+                        iconColor: 'rgb(254,107,120)',
+                        confirmButtonColor: 'rgb(254,107,120)'
+                    });
+
+                    return;
+                }
+
+
                 Swal.fire({
                     title: "Yorumunuz Başarıyla İletildi.",
-                    text: `Sn. ${response.Data.Text} mesajınız başarıyla iletilmiştir. Onay işleminden sonra mesajınız görüntülenebilecektir.`,
+                    text: `Sn. ${response.Data.Text} yorumunuz başarıyla iletilmiştir. Onay işleminden sonra mesajınız görüntülenebilecektir.`,
                     icon: "success",
                     color: '#000000',
                     iconColor: 'rgb(254,107,120)',
                     confirmButtonColor: 'rgb(254,107,120)'
                 });
+
+                $('#comment-form').trigger('reset');
+
+                const newComment = `
+                    <li class="comment rounded bg-light">
+                        <div class="thumb">
+                            <img src="/blog/images/other/comment-1.png" alt="${response.Data.CreatedByName}">
+                        </div>
+                        <div class="details">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h4 class="name"><a href="javascript:void(0)">${response.Data.CreatedByName}</a></h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <b>İncelemede</b>
+                                </div>
+                            </div>  
+                            <span class="date">${moment(response.Data.CreatedDate).format('LL')}</span>
+                            <p>${response.Data.Text}</p>
+                        </div>
+                    </li>
+                `;
+                $('#commentList').append(newComment);
             },
             error: function (err) {
                 Swal.fire({
@@ -101,6 +139,20 @@ $(document).on('click', '#btnReplyComment', function (event) {
             data: { addReplyCommentDto: replyComment },
             dataType: 'json',
             success: function (response) {
+
+                if (response.resultStatus === false) {
+                    Swal.fire({
+                        title: "Lütfen Boş Alanları Doldurunuz.",
+                        html: `<p class='text text-danger'>${response.errorMessages}<p>`,
+                        icon: "error",
+                        color: '#000000',
+                        iconColor: 'rgb(254,107,120)',
+                        confirmButtonColor: 'rgb(254,107,120)'
+                    });
+
+                    return;
+                }
+
                 Swal.fire({
                     title: "Yanıtınız Başarıyla İletildi.",
                     text: `Sn. ${response.Data.Text} yanıtınız başarıyla iletilmiştir. Onay işleminden sonra yanıtınız görüntülenebilecektir.`,
@@ -109,6 +161,8 @@ $(document).on('click', '#btnReplyComment', function (event) {
                     iconColor: 'rgb(254,107,120)',
                     confirmButtonColor: 'rgb(254,107,120)'
                 });
+
+                $('#comment-form').trigger('reset');
             },
             error: function (err) {
                 Swal.fire({

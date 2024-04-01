@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 
@@ -11,9 +12,11 @@ using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 namespace SerdehaBlog.Data.Migrations
 {
     [DbContext(typeof(SerdehaBlogDbContext))]
-    partial class SerdehaBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240331231551_AddedContactTable")]
+    partial class AddedContactTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -236,7 +239,7 @@ namespace SerdehaBlog.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5d7c99e3-004e-46b9-9080-ba459b781356",
+                            ConcurrencyStamp = "ebbee4cb-3409-4931-9fae-65fdafcb08d6",
                             Email = "serdehablog@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -245,10 +248,10 @@ namespace SerdehaBlog.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SERDEHABLOG@GMAIL.COM",
                             NormalizedUserName = "SERDEHA",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPDQseTDKA4BFcsp8sMVirUlPPP91vI7hS1Z928Hba83cHBhAJUXK0JPqemq75YA+w==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJKpYAcVNUtJKXbb05pmGZHfPUmWH8dyMtzB+XMCdFNYDg/hIjWR1OpK3Qs1GFwB6A==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "5e862c73-b25f-4fde-b985-f44f3462945a",
+                            SecurityStamp = "29fdff86-8707-4837-b52d-cca71fbb80f8",
                             TwoFactorEnabled = false,
                             UserName = "serdeha"
                         });
@@ -345,13 +348,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 1,
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6014),
-                            Date = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6014),
+                            CreatedDate = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6286),
+                            Date = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6287),
                             IsActive = true,
                             IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6011),
+                            ModifiedDate = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6283),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Lorem Makalesi hakkında detaylar",
@@ -367,13 +370,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 2,
                             Content = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6019),
-                            Date = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6020),
+                            CreatedDate = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6292),
+                            Date = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6293),
                             IsActive = true,
                             IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(6018),
+                            ModifiedDate = new DateTime(2024, 4, 1, 2, 15, 50, 603, DateTimeKind.Local).AddTicks(6291),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Its Long Day Makalesi hakkında detaylar",
@@ -438,11 +441,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 1,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(7289),
+                            CreatedDate = new DateTime(2024, 4, 1, 2, 15, 50, 604, DateTimeKind.Local).AddTicks(1112),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(7290),
+                            ModifiedDate = new DateTime(2024, 4, 1, 2, 15, 50, 604, DateTimeKind.Local).AddTicks(1113),
                             Name = "Teknoloji",
                             Note = "Teknoloji postlarının paylaşıldığı kategori"
                         },
@@ -451,11 +454,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 2,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(7293),
+                            CreatedDate = new DateTime(2024, 4, 1, 2, 15, 50, 604, DateTimeKind.Local).AddTicks(1117),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 2, 18, 6, 859, DateTimeKind.Local).AddTicks(7294),
+                            ModifiedDate = new DateTime(2024, 4, 1, 2, 15, 50, 604, DateTimeKind.Local).AddTicks(1118),
                             Name = "Yazılım",
                             Note = "Yazılım postlarının paylaşıldığı kategori"
                         });
@@ -521,6 +524,9 @@ namespace SerdehaBlog.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedByName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -565,6 +571,8 @@ namespace SerdehaBlog.Data.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Contact", (string)null);
                 });
@@ -764,6 +772,17 @@ namespace SerdehaBlog.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Article");
+                });
+
+            modelBuilder.Entity("SerdehaBlog.Entity.Concrete.Contact", b =>
+                {
+                    b.HasOne("SerdehaBlog.Entity.Concrete.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("SerdehaBlog.Entity.Concrete.ReplyComment", b =>

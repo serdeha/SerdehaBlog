@@ -10,6 +10,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 
 builder.Services.Configure<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
 builder.Services.ConfigureWritable<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
+builder.Services.Configure<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
+builder.Services.ConfigureWritable<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();
