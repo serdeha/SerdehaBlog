@@ -1,0 +1,39 @@
+﻿@model AboutDto
+@{
+    ViewData["Title"] = "Hakkımda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null)
+{
+    <div class="page-content bordered rounded padding-30">
+
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <img src="~/frontEnd/img/about/@Model.ImagePath" alt="Serdeha Mehmet" class="rounded mb-4">
+        }
+
+
+        @if (!string.IsNullOrEmpty(Model.Title))
+        {
+            <h3>@Model.Title</h3>
+        }
+
+        @Html.Raw(Model.Text)
+
+        <hr class="my-4">
+        <ul class="social-icons list-unstyled list-inline mb-0">
+            @await Component.InvokeAsync("SocialMedia")
+        </ul>
+
+    </div>
+}
+else
+{
+    <div>
+        <p>Henüz herhangi bir içerik girilmemiş. </p>
+        <a asp-controller="Blog" asp-action="Index" asp-area="" class="btn btn-default">Geri Dön</a>
+    </div>
+}
+
+

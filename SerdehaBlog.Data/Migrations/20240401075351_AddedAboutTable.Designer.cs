@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 
@@ -11,9 +12,11 @@ using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 namespace SerdehaBlog.Data.Migrations
 {
     [DbContext(typeof(SerdehaBlogDbContext))]
-    partial class SerdehaBlogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240401075351_AddedAboutTable")]
+    partial class AddedAboutTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,9 +142,6 @@ namespace SerdehaBlog.Data.Migrations
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -285,7 +285,7 @@ namespace SerdehaBlog.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e3b352df-4756-4db4-a84c-0fbe5c8a3c0d",
+                            ConcurrencyStamp = "89342532-fdef-4080-9bfa-c9160f218555",
                             Email = "serdehablog@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -294,10 +294,10 @@ namespace SerdehaBlog.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "SERDEHABLOG@GMAIL.COM",
                             NormalizedUserName = "SERDEHA",
-                            PasswordHash = "AQAAAAIAAYagAAAAECcteVzOBgKZCf0Om0ykdq1Lt6UbwlZyr4YmbLnljId7LMihPeGE5YXNSpLeYCLYMw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEG9LlTFB5If/tx3LBBcHluz4LE7aSJE5/lrVLGf2qyHxSjKLPqvT2c/0uA1tQ0zG/Q==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "3410888f-66e1-4ea7-80a9-2a930f7e38f4",
+                            SecurityStamp = "2311fcd6-8575-4ddb-9020-85451a2e5d6e",
                             TwoFactorEnabled = false,
                             UserName = "serdeha"
                         });
@@ -394,13 +394,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 1,
                             Content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4737),
-                            Date = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4737),
+                            CreatedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(716),
+                            Date = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(716),
                             IsActive = true,
                             IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4734),
+                            ModifiedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(713),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Lorem Makalesi hakkında detaylar",
@@ -416,13 +416,13 @@ namespace SerdehaBlog.Data.Migrations
                             CategoryId = 2,
                             Content = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, ",
                             CreatedByName = "InitialCreate",
-                            CreatedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4744),
-                            Date = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4744),
+                            CreatedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(723),
+                            Date = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(723),
                             IsActive = true,
                             IsCorousel = false,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(4742),
+                            ModifiedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(721),
                             Note = "InitialCreate",
                             SeoAuthor = "Serdeha",
                             SeoDescription = "Its Long Day Makalesi hakkında detaylar",
@@ -487,11 +487,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 1,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(6134),
+                            CreatedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(2303),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(6135),
+                            ModifiedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(2304),
                             Name = "Teknoloji",
                             Note = "Teknoloji postlarının paylaşıldığı kategori"
                         },
@@ -500,11 +500,11 @@ namespace SerdehaBlog.Data.Migrations
                             Id = 2,
                             AppUserId = 1,
                             CreatedByName = "Serdeha",
-                            CreatedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(6139),
+                            CreatedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(2310),
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "InitialCreate",
-                            ModifiedDate = new DateTime(2024, 4, 1, 11, 1, 50, 970, DateTimeKind.Local).AddTicks(6140),
+                            ModifiedDate = new DateTime(2024, 4, 1, 10, 53, 50, 802, DateTimeKind.Local).AddTicks(2310),
                             Name = "Yazılım",
                             Note = "Yazılım postlarının paylaşıldığı kategori"
                         });

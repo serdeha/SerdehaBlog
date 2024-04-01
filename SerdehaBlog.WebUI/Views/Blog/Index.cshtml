@@ -24,7 +24,7 @@
             </div>
             <div class="details">
                 <ul class="meta list-inline mb-0">
-                    <li class="list-inline-item"><a href="#"><img src="~/blog/images/other/author-sm.png" class="author" alt="author" />@article.CreatedByName</a></li>
+                    <li class="list-inline-item"><a asp-controller="Blog" asp-action="Ara" asp-route-kelime="@article.CreatedByName"><img src="~/blog/images/other/author-sm.png" class="author" alt="@article.CreatedByName" />@article.CreatedByName</a></li>
                     <li class="list-inline-item">@article.Date.ToString("dd MMMM yyyy")</li>
                 </ul>
                 <h5 class="post-title mb-3 mt-3"><a href="@Url.FriendlyUrlHelper(article.Title!)/@article.Id">@article.Title</a></h5>

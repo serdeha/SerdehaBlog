@@ -35,7 +35,7 @@ namespace SerdehaBlog.WebUI.Controllers
         {
             List<Article> searchedArticles = string.IsNullOrEmpty(kelime) ?
                 await _articleService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted, x => x.Category!) :
-                await _articleService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.Content!.Contains(kelime), x => x.Category!);
+                await _articleService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.Content!.Contains(kelime) || x.CreatedByName!.Contains(kelime) || x.SeoTags!.Contains(kelime), x => x.Category!);
 
             List<ListArticleDto> articleResults = _mapper.Map<List<ListArticleDto>>(searchedArticles);
 

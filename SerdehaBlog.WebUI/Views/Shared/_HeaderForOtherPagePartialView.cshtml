@@ -10,6 +10,9 @@
 					<li class="nav-item @Html.IsActive("Blog","Index")">
 						<a class="nav-link" asp-controller="Blog" asp-action="Index" asp-area="">Anasayfa</a>
 					</li>
+					<li class="nav-item @Html.IsActive("About","Index")">
+						<a class="nav-link" asp-controller="About" asp-action="Index" asp-area="">Hakkımda</a>
+					</li>
 					<li class="nav-item @Html.IsActive("Contact","Index")">
 						<a class="nav-link" asp-controller="Contact" asp-action="Index" asp-area="">İletişim</a>
 					</li>
@@ -20,12 +23,7 @@
 			<div class="header-right">
 				<!-- social icons -->
 				<ul class="social-icons list-unstyled list-inline mb-0">
-					<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+					@await Component.InvokeAsync("SocialMedia")
 				</ul>
 				<!-- header buttons -->
 				<div class="header-buttons">
@@ -53,6 +51,9 @@
 					<li class="nav-item @Html.IsActive("Blog","Index")">
 						<a class="nav-link" asp-controller="Blog" asp-action="Index" asp-area="">Anasayfa</a>
 					</li>
+					<li class="nav-item @Html.IsActive("About","Index")">
+						<a class="nav-link" asp-controller="About" asp-action="Index" asp-area="">Hakkımda</a>
+					</li>
 					<li class="nav-item @Html.IsActive("Contact","Index")">
 						<a class="nav-link" asp-controller="Contact" asp-action="Index" asp-area="">İletişim</a>
 					</li>
@@ -63,12 +64,7 @@
 			<div class="header-right">
 				<!-- social icons -->
 				<ul class="social-icons list-unstyled list-inline mb-0">
-					<li class="list-inline-item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-medium"></i></a></li>
-					<li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
+					@await Component.InvokeAsync("SocialMedia")
 				</ul>
 				<!-- header buttons -->
 				<div class="header-buttons">

@@ -10,6 +10,7 @@ namespace SerdehaBlog.Data.UnitOfWork
 		IReplyCommentRepository ReplyComment { get; }
 		ISocialMediaRepository SocialMedia { get; }
 		IContactRepository Contact { get; }
+		IAboutRepository About { get; }
 		Task<int> SaveChangesAsync();
 		void SaveChanges();
 	}

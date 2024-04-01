@@ -29,8 +29,10 @@ namespace SerdehaBlog.Core.Extensions
             serviceCollection.AddScoped<ISocialMediaService, SocialMediaManager>();
 			serviceCollection.AddScoped<IContactRepository, EfContactRepository>();
 			serviceCollection.AddScoped<IContactService, ContactManager>();
+            serviceCollection.AddScoped<IAboutRepository, EfAboutRepository>();
+            serviceCollection.AddScoped<IAboutService, AboutManager>();
 
-			return serviceCollection;
+            return serviceCollection;
         }
 
 		public static void ConfigureWritable<T>(this IServiceCollection services, IConfigurationSection section, string file = "appsettings.json") where T : class, new()
