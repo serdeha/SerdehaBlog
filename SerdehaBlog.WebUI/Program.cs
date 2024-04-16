@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SerdehaBlog.Core.Extensions;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 using SerdehaBlog.Entity.Concrete;
+using SerdehaBlog.WebUI.Areas.Admin.Dtos.ArticleDto;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
@@ -30,9 +31,9 @@ builder.Services.AddIdentity<AppUser,AppRole>(options =>
 }).AddEntityFrameworkStores<SerdehaBlogDbContext>().AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
-    options.LoginPath = "/Identity/Account/Login";
-    options.LogoutPath = "/Identity/Account/Logout";
+    options.AccessDeniedPath = "/User/Error/AccessDenied";
+    options.LoginPath = "/User/Login/Index";
+    options.LogoutPath = "/User/Login/Logout";
     options.Cookie = new CookieBuilder
     {
         Name = "SerdehaBlog",
@@ -65,7 +66,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
 
-
+//app.MapAreaControllerRoute("areas", "Admin", "{area:Admin}/{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
 app.MapControllerRoute("default", "{controller=Blog}/{action=Index}/{id?}");
 app.MapControllerRoute("article", "{title}/{articleId}", new { controller = "Blog", action = "ReadMore", Area = "" });
 

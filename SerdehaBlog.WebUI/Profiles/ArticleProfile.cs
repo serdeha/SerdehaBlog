@@ -11,11 +11,13 @@ namespace SerdehaBlog.WebUI.Profiles
             CreateMap<Article, ListArticleDto>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category!.Name))
 				.ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category!.Id))
+                .ForMember(dest => dest.AuthorImage, opt => opt.MapFrom(src => src.AppUser!.ImageUrl))
 				.ReverseMap();
 
             CreateMap<Article, DetailArticleDto>()
                 .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category!.Name))
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category!.Id))
+                .ForMember(dest => dest.AuthorImage, opt => opt.MapFrom(src => src.AppUser!.ImageUrl))
                 .ReverseMap();
 
             CreateMap<Article, CarouselArticleDto>()

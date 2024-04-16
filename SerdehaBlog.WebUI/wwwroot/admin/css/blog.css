@@ -1,0 +1,10 @@
+﻿code {
+    padding: 15px 30px 30px 30px !Important;
+    margin: 0px !Important;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.w-embed:after, .w-embed:before {
+    display: none !important;
+}

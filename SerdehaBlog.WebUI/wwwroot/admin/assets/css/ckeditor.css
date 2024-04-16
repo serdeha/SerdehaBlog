@@ -1,0 +1,11 @@
+﻿.ck-editor__editable_inline {
+    min-height: 500px;
+}
+
+.ck-content {
+    color: black;
+}
+
+.ck-content::selection{
+    background-color:green !important;
+}

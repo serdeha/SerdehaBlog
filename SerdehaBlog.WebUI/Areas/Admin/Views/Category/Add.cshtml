@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model AddCategoryDto
+@inject UserManager<AppUser> UserManager;
+@{
+    ViewData["Title"] = "Kategori Ekle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var userData = await UserManager.GetUserAsync(User);
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Kategori Ekle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Category" asp-action="Add" asp-area="Admin" method="post">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" value="@(User.Identity!.IsAuthenticated ? userData!.Id : 0)" asp-for="AppUserId" />
+            <input type="hidden" value="@(User.Identity!.IsAuthenticated ? string.Concat(userData!.FirstName," ",userData.LastName) : "")" asp-for="CreatedByName" />
+            <input type="hidden" value="@(User.Identity!.IsAuthenticated ? string.Concat(userData!.FirstName," ",userData.LastName) : "")" asp-for="ModifiedByName" />
+
+            <div class="form-group">
+                <label>Kategori İsmi</label>
+                <input type="text" class="form-control input-rounded" asp-for="Name" placeholder="Kategori İsmi" required>
+                <span asp-validation-for="Name" class="text text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Ekle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-asp-controller="Category" asp-action="Index" asp-asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+

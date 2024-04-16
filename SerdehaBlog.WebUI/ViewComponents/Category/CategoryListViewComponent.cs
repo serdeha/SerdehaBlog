@@ -18,7 +18,9 @@ namespace SerdehaBlog.WebUI.ViewComponents.Category
 
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			List<ListCategoryDto> categories = _mapper.Map<List<ListCategoryDto>>(await _unitOfWork.Category.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted, x => x.Articles!));
+			List<ListCategoryDto> categories = _mapper.Map<List<ListCategoryDto>>(await _unitOfWork.Category.
+				GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted, x => x.Articles!.Where(a=>a.IsActive && !a.IsDeleted)!));
+
 			return View(categories);
 		}
 	}

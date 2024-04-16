@@ -1,0 +1,68 @@
+﻿@model UserUpdateViewModel
+
+@{
+    ViewData["Title"] = "Profilim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Profilim</h4>
+        </div>
+        <hr>
+        <form asp-controller="User" asp-action="Profile" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="@Model.ImageUrl" />
+
+            <div class="form-group">
+                <img src="~/admin/img/user/@(Model.ImageUrl ??= "defaultUser.png")" width="100" height="100" class="rounded-circle ml-3 shadow" alt="@string.Concat(Model.FirstName," ",Model.LastName)" />
+            </div>
+            
+            <div class="form-group">
+                <label>Ad</label>
+                <input type="text" class="form-control input-rounded" asp-for="FirstName" placeholder="İsminizi giriniz">
+            </div>
+            <div class="form-group">
+                <label>Soyad</label>
+                <input type="text" class="form-control input-rounded" asp-for="LastName" placeholder="Soyadınızı giriniz">
+            </div>
+            <div class="form-group">
+                <label>E-posta</label>
+                <input type="text" class="form-control input-rounded" asp-for="Email" placeholder="E-posta adresinizi giriniz">
+            </div>
+
+            <div class="row">
+                <div class="col-md-11">
+                    <div class="form-group">
+                        <label>Resim Dosyası</label>
+                        <input type="file" class="form-control-file" name="formFile" accept="image/*" id="profileImgFile">
+                    </div>
+                </div>
+                <div class="col-md-1 mt-4">
+                    <div class="col-md-1" id="imgArea" style="display:none;">
+                        <img id="imgPreview" src="" width="50" height="50" class="rounded ml-3 shadow">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Profilimi Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-controller="Home" asp-action="Index" asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $('#profileImgFile').change(function (event) {
+            $('#imgArea').show();
+            $('#imgPreview').attr('src', URL.createObjectURL(event.target.files[0]));
+        })
+    </script>
+}
+

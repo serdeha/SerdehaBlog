@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AppUser> SignInManager
+@model UserDto
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="icons dropdown">
+        <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+            <span class="activity active"></span>
+            <img src="~/admin/img/user/@Model.ImageUrl" height="40" width="40" alt="@Model.Name">
+        </div>
+        <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+            <div class="dropdown-content-body">
+                <ul>
+                    <li>
+                        <a asp-controller="User" asp-action="Profile" asp-area="Admin"><i class="icon-user"></i> <span>Profilim</span></a>
+                    </li>
+
+                    <hr class="my-2">
+                    <li>
+                        <a asp-controller="User" asp-action="ChangePassword" asp-area="Admin"><i class="icon-lock"></i> <span>Şifremi Değiştir</span></a>
+                    </li>
+                    <li><a asp-controller="Login" asp-action="Logout" asp-area="User"><i class="icon-key"></i> <span>Çıkış Yap</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </li>
+}

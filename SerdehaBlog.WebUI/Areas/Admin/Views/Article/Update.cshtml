@@ -1,0 +1,116 @@
+﻿@model UpdateArticleDto
+@{
+    ViewData["Title"] = $"{Model.Title} Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">@Model.Title - Makalesini Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Article" asp-action="Update" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="AppUserId" />
+            <input type="hidden" asp-for="CreatedByName" />
+            <input type="hidden" asp-for="ThumbnailPath" />
+            <input type="hidden" asp-for="Date" />
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <a class="fancybox" href="~/admin/img/blog/@Model.ThumbnailPath" data-fancybox="gallery">
+                            <img src="~/admin/img/blog/@Model.ThumbnailPath" width="250" class="img-fluid rounded shadow" alt="@Model.Title">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Title" placeholder="Başlık" required>
+                        <span asp-validation-for="Title" class="text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Kategori</label>
+                        <select id="selectCategory" class="form-control input-rounded" asp-items="@ViewBag.Categories" asp-for="CategoryId">
+                            <option selected="selected" disabled>Kategori</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-1 d-flex align-items-center">
+                    <div class="form-group">
+                        <div class="form-check mb-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" asp-for="IsCarousel"> <b>Başa tuttur</b>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input" asp-for="IsActive"> <b>@(Model.IsActive ? "Paylaşıldı" : "Tasklak")</b>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ck-editor__editable ck-editor__editable_inline">
+                <label>İçerik</label>
+                <textarea rows="100" cols="50" class="form-control" asp-for="Content" placeholder="İçerik" id="articleEditor"></textarea>
+                <span asp-validation-for="Content" class="text text-danger"></span>
+            </div>
+
+            <div class="form-row form-group">
+                <div class="col">
+                    <label>Yazar</label>
+                    <input type="text" class="form-control input-rounded" asp-for="SeoAuthor" placeholder="Yazar" required>
+                    <span asp-validation-for="SeoAuthor" class="text text-danger"></span>
+                </div>
+                <div class="col">
+                    <label>Makale Açıklaması</label>
+                    <input type="text" class="form-control input-rounded" asp-for="SeoDescription" placeholder="Makale Açıklaması" required>
+                    <span asp-validation-for="SeoDescription" class="text text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Anahtar Kelimeler</label>
+                <input type="text" class="form-control input-rounded" asp-for="SeoTags" placeholder="Anahtar Kelimeler (* virgül bırakarak yazınız.)" required>
+                <span asp-validation-for="SeoTags" class="text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input name="articleImageFile" type="file" class="dropify" data-height="100" />
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-asp-controller="Article" asp-action="Index" asp-asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+
+@section Css {
+    <link href="~/admin/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="~/admin/assets/plugins/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+    <link href="~/admin/assets/css/ckeditor.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/plugins/select2/js/select2.full.min.js"></script>
+    <script src="~/admin/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script src="~/admin/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/admin/js/article/updateArticle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+}
+

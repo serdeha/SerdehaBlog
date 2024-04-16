@@ -8,10 +8,12 @@ using SerdehaBlog.Entity.Concrete;
 using SerdehaBlog.WebUI.Dtos.CommentDto;
 using SerdehaBlog.WebUI.Dtos.ReplyCommentDto;
 using SerdehaBlog.Business.Absract;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerdehaBlog.WebUI.Controllers
 {
-    public class CommentController : Controller
+	[AllowAnonymous]
+	public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
         private readonly IReplyCommentService _replyCommentService;

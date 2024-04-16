@@ -1,0 +1,25 @@
+﻿<div class="nk-sidebar">
+    <div class="nk-nav-scroll">
+        <ul class="metismenu" id="menu">
+            <li class="nav-label">Makale</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="true">
+                    <i class="icon-book-open menu-icon"></i><span class="nav-text">Makale</span>
+                </a>
+                <ul aria-expanded="true">
+                    <li><a asp-controller="Article" asp-action="Index" asp-area="Admin">Makaleler</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-label">Kategori</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="true">
+                    <i class="icon-folder-alt menu-icon"></i><span class="nav-text">Kategori</span>
+                </a>
+                <ul aria-expanded="true">
+                    <li><a asp-controller="Category" asp-action="Index" asp-area="Admin">Kategoriler</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

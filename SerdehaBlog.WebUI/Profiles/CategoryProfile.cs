@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
 using SerdehaBlog.Entity.Concrete;
-using SerdehaBlog.WebUI.Dtos.ArticleDto;
 using SerdehaBlog.WebUI.Dtos.CategoryDto;
 
 namespace SerdehaBlog.WebUI.Profiles
 {
-	public class CategoryProfile : Profile
+    public class CategoryProfile : Profile
 	{
 		public CategoryProfile()
 		{

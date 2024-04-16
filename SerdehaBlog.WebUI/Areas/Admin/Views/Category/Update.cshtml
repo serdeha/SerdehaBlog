@@ -1,0 +1,45 @@
+﻿@model UpdateCategoryDto
+@{
+    ViewData["Title"] = $"{Model.Name} Kategorisini Güncelle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">@Model.Name - Kategorisini Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Category" asp-action="Update" asp-area="Admin" method="post" >
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="AppUserId" />
+            <input type="hidden" asp-for="CreatedByName" />
+            <input type="hidden" asp-for="CreatedDate" />
+                       
+
+            <div class="form-group">
+                <label>Kategori Başlığı</label>
+                <input type="text" class="form-control input-rounded" asp-for="Name" placeholder="Kategori Başlığı" required>
+                <span asp-validation-for="Name" class="text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="form-check mb-3">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" asp-for="IsActive"> <b>Aktif Mi ?</b>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-asp-controller="Category" asp-action="Index" asp-asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+

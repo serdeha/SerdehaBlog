@@ -7,10 +7,12 @@ using SerdehaBlog.Entity.Concrete;
 using SerdehaBlog.WebUI.Dtos.ContactDto;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SerdehaBlog.WebUI.Controllers
 {
-    public class ContactController : Controller
+	[AllowAnonymous]
+	public class ContactController : Controller
     {
         private readonly IContactService _contactService;
         private readonly IMapper _mapper;
@@ -21,6 +23,9 @@ namespace SerdehaBlog.WebUI.Controllers
             _mapper = mapper;
 		}
 
+        [Route("Contact")]
+        [Route("Contact/Index")]
+        [Route("Iletisim")]
 		public IActionResult Index()
         {
             return View();

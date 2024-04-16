@@ -7,5 +7,6 @@ namespace SerdehaBlog.Data.Absract
     {
         Task<List<Article>> GetLastThreeArticleAsync(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties);
         Task<List<Article>> GetCarouselArticleAsync(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties);
+        IEnumerable<Article> GetAllArticlesWithPagination(string searchValue, string sortColumn, string sortDirectory, int pageSize, int skipRecords);
     }
 }

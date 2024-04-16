@@ -18,7 +18,7 @@ namespace SerdehaBlog.WebUI.ViewComponents.CarouselPost
 
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
-			List<CarouselArticleDto> carouselArticles = _mapper.Map<List<CarouselArticleDto>>(await _unitOfWork.Article.GetCarouselArticleAsync(x => x.IsActive && !x.IsDeleted && x.IsCorousel, x => x.Category!));
+			List<CarouselArticleDto> carouselArticles = _mapper.Map<List<CarouselArticleDto>>(await _unitOfWork.Article.GetCarouselArticleAsync(x => x.IsActive && !x.IsDeleted && x.IsCarousel, x => x.Category!));
 			return View(carouselArticles);
 		}
 	}
