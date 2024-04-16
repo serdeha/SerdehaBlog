@@ -14,24 +14,6 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Repositories
             _serdehaBlogDbContext = serdehaBlogDbContext;
         }
 
-        public IEnumerable<Article> GetAllArticlesWithPagination(string searchValue, string sortColumn, string sortDirectory, int pageSize, int skipRecords)
-        {
-            IEnumerable<Article> articles = _serdehaBlogDbContext.Articles.Where(x => x.IsActive && !x.IsDeleted
-            || x.Title!.Contains(searchValue)
-            || x.Category!.Name!.Contains(searchValue)
-            ).Include(x => x.Category)
-            .AsEnumerable<Article>();
-
-            if (sortDirectory == "asc")
-                articles = articles.OrderBy(x => x.GetType().GetProperty(sortColumn)!.GetValue(x));
-            else
-                articles = articles.OrderByDescending(x => x.GetType().GetProperty(sortColumn)!.GetValue(x));
-
-            articles = articles.Skip(skipRecords).Take(pageSize);
-
-            return articles;
-        }
-
         public async Task<List<Article>> GetCarouselArticleAsync(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties)
 		{
             IQueryable<Article> query = _serdehaBlogDbContext.Articles;

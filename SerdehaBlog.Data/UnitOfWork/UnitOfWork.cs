@@ -31,7 +31,7 @@ namespace SerdehaBlog.Data.UnitOfWork
 		public IReplyCommentRepository ReplyComment => _replyCommentRepository ??= new EfReplyCommentRepository(_context);
 		public ISocialMediaRepository SocialMedia => _socialMediaRepository ??= new EfSocialMediaRepository(_context);
 		public IContactRepository Contact => _contactRepository ??= new EfContactRepository(_context);
-		public IAboutRepository About => _aboutRepository ??= new EfAboutRepository(_context);
+		public IAboutRepository About => _aboutRepository ??= new EfAboutRepository(_context,_context);
 
 		public void SaveChanges()
 		{

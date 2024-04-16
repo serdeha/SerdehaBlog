@@ -58,6 +58,11 @@ namespace SerdehaBlog.Business.Concrete
             return 0;
         }
 
+        public Task<About?> GetAbout()
+        {
+            return _unitOfWork.About.GetAbout();
+        }
+
         public List<About> GetAll(Expression<Func<About, bool>>? filter = null)
         {
             return filter == null ? _unitOfWork.About.GetAll() : _unitOfWork.About.GetAll(filter);

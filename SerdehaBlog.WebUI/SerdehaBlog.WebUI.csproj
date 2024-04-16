@@ -27,6 +27,7 @@
     <Folder Include="wwwroot\admin\img\blog\inPostImage\" />
     <Folder Include="wwwroot\admin\img\user\" />
     <Folder Include="wwwroot\frontEnd\img\about\" />
+    <Folder Include="wwwroot\img\about\" />
   </ItemGroup>
 
   <ItemGroup>

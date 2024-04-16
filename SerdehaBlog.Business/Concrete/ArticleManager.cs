@@ -63,11 +63,6 @@ namespace SerdehaBlog.Business.Concrete
             return filter == null ? _unitOfWork.Article.GetAll() : _unitOfWork.Article.GetAll(filter);
         }
 
-        public IEnumerable<Article> GetAllArticlesWithPagination(string searchValue, string sortColumn, string sortDirectory, int pageSize, int skipRecords)
-        {
-            return _unitOfWork.Article.GetAllArticlesWithPagination(searchValue,sortColumn, sortDirectory, pageSize, skipRecords);
-        }
-
         public List<Article> GetAllWithFilter(Expression<Func<Article, bool>>? predicate = null, params Expression<Func<Article, object>>[] includeProperties)
         {
             return _unitOfWork.Article.GetAllWithFilter(predicate, includeProperties);

@@ -1,0 +1,71 @@
+﻿@model UpdateAboutDto
+@{
+    ViewData["Title"] = "Hakkımda";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Hakkımda Sayfasını Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="About" asp-action="Index" asp-area="Admin" method="post" enctype="multipart/form-data">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedByName" />
+            <input type="hidden" asp-for="ImagePath" />
+            <input type="hidden" asp-for="CreatedDate" />
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <a class="fancybox" href="~/img/about/@Model.ImagePath" data-fancybox="gallery">
+                            <img src="~/img/about/@Model.ImagePath" width="250" class="img-fluid rounded shadow" alt="@Model.Title">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Title" placeholder="Başlık" required>
+                        <span asp-validation-for="Title" class="text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group ck-editor__editable ck-editor__editable_inline">
+                <label>İçerik</label>
+                <textarea rows="100" cols="50" class="form-control" asp-for="Text" placeholder="İçerik" id="aboutEditor"></textarea>
+                <span asp-validation-for="Text" class="text text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input name="aboutImageFile" type="file" class="dropify" data-height="100" />
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-controller="Home" asp-action="Index" asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+
+@section Css {
+    <link href="~/admin/assets/plugins/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+    <link href="~/admin/assets/css/ckeditor.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.css" />
+}
+
+@section Scripts {
+    <script src="~/admin/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script src="~/admin/assets/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/admin/js/about/about.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+}
+
