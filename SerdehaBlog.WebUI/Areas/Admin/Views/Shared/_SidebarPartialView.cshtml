@@ -20,6 +20,28 @@
                     <li><a asp-controller="Category" asp-action="Index" asp-area="Admin">Kategoriler</a></li>
                 </ul>
             </li>
+
+            <li class="nav-label">Mesaj</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="true">
+                    <i class="icon-envelope-letter menu-icon"></i><span class="nav-text">Mesaj</span>
+                </a>
+                <ul aria-expanded="true">
+                    <li><a asp-controller="Contact" asp-action="Index" asp-area="Admin">İletilen Mesajlar</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-label">Genel Ayarlar</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="true">
+                    <i class="icon-settings menu-icon"></i><span class="nav-text">Ayarlar</span>
+                </a>
+                <ul aria-expanded="true">
+                    <li><a asp-controller="Settings" asp-action="Index" asp-area="Admin">Site Ayarları</a></li>
+                    <li><a asp-controller="About" asp-action="Index" asp-area="Admin">Hakkımda</a></li>
+                    <li><a asp-controller="Contact" asp-action="Settings" asp-area="Admin">İletişim</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
 </div>

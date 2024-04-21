@@ -8,19 +8,24 @@ using SerdehaBlog.WebUI.Dtos.ContactDto;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
 
 namespace SerdehaBlog.WebUI.Controllers
 {
-	[AllowAnonymous]
+    [AllowAnonymous]
 	public class ContactController : Controller
     {
+        private readonly WebsiteInfo _websiteInfo;
+        private readonly ContactInfo _contactInfo;
         private readonly IContactService _contactService;
         private readonly IMapper _mapper;
 
-		public ContactController(IContactService contactService, IMapper mapper)
+		public ContactController(IContactService contactService, IMapper mapper, IOptionsSnapshot<ContactInfo> contactInfo, IOptionsSnapshot<WebsiteInfo> websiteInfo)
 		{
 			_contactService = contactService;
             _mapper = mapper;
+            _contactInfo = contactInfo.Value;
+            _websiteInfo = websiteInfo.Value;
 		}
 
         [Route("Contact")]
@@ -28,6 +33,8 @@ namespace SerdehaBlog.WebUI.Controllers
         [Route("Iletisim")]
 		public IActionResult Index()
         {
+            ViewData["ContactInfo"] = _contactInfo;
+            ViewData["WebsiteInfo"] = _websiteInfo;
             return View();
         }
 

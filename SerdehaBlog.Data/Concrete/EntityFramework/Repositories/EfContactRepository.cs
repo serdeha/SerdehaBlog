@@ -7,8 +7,15 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Repositories
 {
 	public class EfContactRepository : BaseRepository<Contact>, IContactRepository
 	{
-		public EfContactRepository(SerdehaBlogDbContext context) : base(context)
+        private readonly SerdehaBlogDbContext _serdehaBlogDbContext;
+        public EfContactRepository(SerdehaBlogDbContext context, SerdehaBlogDbContext serdehaBlogDbContext) : base(context)
 		{
+            _serdehaBlogDbContext = serdehaBlogDbContext;
 		}
-	}
+
+        public async Task<Contact?> GetContact()
+        {
+            return await _serdehaBlogDbContext.Contacts.FirstOrDefaultAsync();
+        }
+    }
 }

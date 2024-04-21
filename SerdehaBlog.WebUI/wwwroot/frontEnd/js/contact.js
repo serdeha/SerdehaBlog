@@ -46,6 +46,7 @@
                 $('#contact-form').trigger('reset');
             },
             error: function (err) {
+                console.log(err);
                 Swal.fire({
                     title: "Bir Hata Oluştu!",
                     text: `Hata detayları : ${err.responseText}`,

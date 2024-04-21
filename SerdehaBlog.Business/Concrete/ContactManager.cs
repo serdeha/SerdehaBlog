@@ -56,7 +56,12 @@ namespace SerdehaBlog.Business.Concrete
 			return 0;
 		}
 
-		public List<Contact> GetAll(Expression<Func<Contact, bool>>? filter = null)
+        public async Task<Contact?> GetContact()
+        {
+            return await _unitOfWork.Contact.GetContact();
+        }
+
+        public List<Contact> GetAll(Expression<Func<Contact, bool>>? filter = null)
 		{
 			return filter == null ? _unitOfWork.Contact.GetAll() : _unitOfWork.Contact.GetAll(filter);
 		}

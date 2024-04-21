@@ -1,10 +1,8 @@
 ﻿@using Microsoft.Extensions.Options
 @using SerdehaBlog.Entity.Concrete;
-@inject IOptions<WebsiteInfo> WebsiteInfo
-@inject IOptions<ContactInfo> ContactInfo;
 @{
-	var websiteInfo = WebsiteInfo.Value;
-	var contactInfo = ContactInfo.Value;
+	var websiteInfo = ViewData["WebsiteInfo"] as WebsiteInfo;
+	var contactInfo = ViewData["ContactInfo"] as ContactInfo;
 }
 @{
 	ViewData["Title"] = "İletişim";
@@ -15,7 +13,7 @@
 <html lang="en-US">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>@websiteInfo.Title @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
+	<title>@websiteInfo!.Title @(ViewData["Title"] == null ? "" : $"| {ViewData["Title"]}")</title>
 	<meta name="description" content="@(ViewBag.ArticleDescription == null ? websiteInfo.SeoDescription: ViewBag.ArticleDescription)" />
 	<meta name="keywords" content="@(ViewBag.ArticleKeywords == null ? websiteInfo.SeoKeywords : ViewBag.ArticleKeywords)">
 	<meta name="author" content="@(ViewBag.ArticleAuthor == null ? websiteInfo.SeoAuthor : ViewBag.ArticleAuthor)">
@@ -74,7 +72,7 @@
 		<section class="page-header">
 			<div class="container-xl">
 				<div class="text-center">
-					<h1 class="mt-0 mb-2">@contactInfo.Title</h1>
+					<h1 class="mt-0 mb-2">@contactInfo!.Title</h1>
 				</div>
 			</div>
 		</section>

@@ -16,7 +16,7 @@ namespace SerdehaBlog.Data.Concrete.EntityFramework.Configurations
 			builder.Property(x=>x.Subject).HasMaxLength(300);
 			builder.Property(x=>x.Subject).IsRequired();
 			builder.Property(x=>x.Text).IsRequired();
-			builder.Property(x=>x.Text).HasMaxLength(500);
+			builder.Property(x=>x.Text).HasMaxLength(1000);
 			builder.ToTable("Contact");
 		}
 	}

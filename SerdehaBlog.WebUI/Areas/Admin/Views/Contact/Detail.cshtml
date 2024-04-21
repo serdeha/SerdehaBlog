@@ -1,0 +1,68 @@
+﻿@model DetailContactDto
+@{
+    ViewData["Title"] = $"{Model.Name} Mesajı";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">@Model.Name İsimli Kişinin Mesajı</h4>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>İsim</label>
+                    <input type="text" class="form-control input-rounded" asp-for="Name" placeholder="Kategori Başlığı" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Konu</label>
+                    <input type="text" class="form-control input-rounded" asp-for="Subject" placeholder="Konu" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" class="form-control input-rounded" asp-for="Email" placeholder="Email" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tarih</label>
+                    <input type="date" class="form-control input-rounded" asp-for="CreatedDate" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Mesaj</label>
+            <textarea class="form-control" asp-for="Text" rows="15" readonly></textarea>
+        </div>
+
+        <div class="form-group">
+            @if (!Model.IsRead)
+            {
+                <a class="btn mb-1 btn-rounded btn-success text-white" id="readContact" data-contactId="@Model.Id">
+                    <i class="fa fa-check"></i> Okundu
+                </a>
+            }            
+            <a class="btn mb-1 btn-rounded btn-danger" asp-controller="Contact" asp-action="Index" asp-area="Admin">Vazgeç</a>
+        </div>
+    </div>
+</div>
+
+@section Css{
+    <link href="~/admin/assets/plugins/toastr/css/toastr.min.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/admin/js/contact/contactdetail.js"></script>
+    <script src="~/admin/assets/plugins/toastr/js/toastr.min.js"></script>
+}

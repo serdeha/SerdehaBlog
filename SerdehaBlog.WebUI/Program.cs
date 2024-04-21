@@ -4,10 +4,18 @@ using Microsoft.EntityFrameworkCore;
 using SerdehaBlog.Core.Extensions;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 using SerdehaBlog.Entity.Concrete;
-using SerdehaBlog.WebUI.Areas.Admin.Dtos.ArticleDto;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+builder.Configuration.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
+builder.Configuration.AddEnvironmentVariables();
+if(args != null)
+{
+    builder.Configuration.AddCommandLine(args);
+}
+
 
 builder.Services.Configure<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
 builder.Services.ConfigureWritable<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));

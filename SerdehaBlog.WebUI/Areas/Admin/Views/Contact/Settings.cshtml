@@ -1,0 +1,93 @@
+﻿@model ContactInfo
+@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">İletişim Sayfasını Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Contact" asp-action="Settings" asp-area="Admin" method="post">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-primary" role="alert" asp-validation-summary="All"></div>
+            }
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Başlık</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Title" placeholder="Başlık">
+                        <span asp-validation-for="Title" class="text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Alt-başlık</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Subtitle" placeholder="Alt-başlık">
+                        <span asp-validation-for="Subtitle" class="text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Telefon Başlığı</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Phone" placeholder="Telefon Başlığı">
+                        <span asp-validation-for="Phone" class="text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Telefon Numarası</label>
+                        <input type="text" class="form-control input-rounded" asp-for="PhoneValue" placeholder="Telefon Numarası">
+                        <span asp-validation-for="PhoneValue" class="text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Konum Başlığı</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Location" placeholder="Konum Başlığı">
+                        <span asp-validation-for="Location" class="text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Konum</label>
+                        <input type="text" class="form-control input-rounded" asp-for="LocationValue" placeholder="Konum">
+                        <span asp-validation-for="LocationValue" class="text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>E-mail Başlığı</label>
+                        <input type="text" class="form-control input-rounded" asp-for="Email" placeholder="E-mail Başlığı">
+                        <span asp-validation-for="Email" class="text text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" class="form-control input-rounded" asp-for="EmailValue" placeholder="E-mail">
+                        <span asp-validation-for="EmailValue" class="text text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" asp-controller="Home" asp-action="Index" asp-area="Admin">Vazgeç</a>
+        </form>
+    </div>
+</div>
+
