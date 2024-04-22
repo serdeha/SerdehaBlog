@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /SerdehaBlog.WebUI/appsettings.json
+/SerdehaBlog.Data/Concrete/EntityFramework/Configurations/UserConfiguration.cs
