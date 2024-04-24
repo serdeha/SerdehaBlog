@@ -39,7 +39,7 @@ $(document).on('click', '#btnSendComment', function (event) {
 
                 Swal.fire({
                     title: "Yorumunuz Başarıyla İletildi.",
-                    text: `Sn. ${response.Data.Text} yorumunuz başarıyla iletilmiştir. Onay işleminden sonra mesajınız görüntülenebilecektir.`,
+                    text: `Sn. ${response.Data.CreatedByName} yorumunuz başarıyla iletilmiştir. Onay işleminden sonra mesajınız görüntülenebilecektir.`,
                     icon: "success",
                     color: '#000000',
                     iconColor: 'rgb(254,107,120)',

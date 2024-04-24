@@ -11,6 +11,7 @@ namespace SerdehaBlog.Data.UnitOfWork
 		ISocialMediaRepository SocialMedia { get; }
 		IContactRepository Contact { get; }
 		IAboutRepository About { get; }
+		INotificationRepository Notification { get; }
 		Task<int> SaveChangesAsync();
 		void SaveChanges();
 	}

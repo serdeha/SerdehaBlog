@@ -25,6 +25,7 @@
     <Folder Include="Models\" />
     <Folder Include="wwwroot\admin\assets\plugins\ckeditor\" />
     <Folder Include="wwwroot\admin\img\blog\inPostImage\" />
+    <Folder Include="wwwroot\admin\img\avatar\" />
     <Folder Include="wwwroot\admin\img\user\" />
     <Folder Include="wwwroot\frontEnd\img\about\" />
     <Folder Include="wwwroot\img\about\" />

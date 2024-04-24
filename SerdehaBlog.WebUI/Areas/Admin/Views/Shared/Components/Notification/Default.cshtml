@@ -1,0 +1,41 @@
+﻿@model List<ListNotificationDto>
+
+<li class="icons dropdown">
+    <a href="javascript:void(0)" data-toggle="dropdown">
+        <i class="mdi mdi-bell-outline"></i>
+        @if(ViewBag.NotificationCount > 0)
+        {
+            <span class="badge badge-pill gradient-2">@ViewBag.NotificationCount</span>
+        }        
+    </a>
+    <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+        <div class="dropdown-content-heading d-flex justify-content-between">
+            <span class="">@(ViewBag.NotificationCount > 0 ? $"{ViewBag.NotificationCount} Yeni Bildirim" : "Yeni Bildirim Yok")</span>
+            @if(ViewBag.NotificationCount > 0)
+            {
+                <a href="javascript:void()" class="d-inline-block">
+                    <span class="badge badge-pill gradient-2">@ViewBag.NotificationCount</span>
+                </a>
+            }            
+        </div>
+        <div class="dropdown-content-body">
+            @if (Model.Any())
+            {
+                <ul>
+                    @foreach(var notification in Model)
+                    {
+                        <li>
+                            <a asp-controller="Notification" asp-action="Index" asp-area="Admin">
+                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="@notification.NotificationIcon"></i></span>
+                                <div class="notification-content">
+                                    <h6 class="notification-heading">@notification.Title</h6>
+                                    <span class="notification-text">@notification.CreatedDate.AsTimeAgo()</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            }       
+        </div>
+    </div>
+</li>

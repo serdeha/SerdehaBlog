@@ -1,42 +1,48 @@
 ﻿@model List<NotificationContactDto>
 
 <li class="icons dropdown">
-    <a href="javascript:void(0)" data-toggle="dropdown">
+    <a data-toggle="dropdown">
         <i class="mdi mdi-email-outline"></i>
-        @if(ViewBag.MessageCount > 0)
+        @if (ViewBag.MessageCount > 0)
         {
             <span class="badge badge-pill gradient-1">@ViewBag.MessageCount</span>
-        }        
+        }
     </a>
     <div class="drop-down animated fadeIn dropdown-menu">
         <div class="dropdown-content-heading d-flex justify-content-between">
-            <span class="">@(ViewBag.MessageCount > 0 ? $"{ViewBag.MessageCount} Yeni Mesaj" : "")</span>
-            @if(ViewBag.MessageCount > 0)
+            <span class="">@(ViewBag.MessageCount > 0 ? $"{ViewBag.MessageCount} Yeni Mesaj" : "Yeni Mesaj Yok")</span>
+            @if (ViewBag.MessageCount > 0)
             {
                 <a href="javascript:void()" class="d-inline-block">
                     <span class="badge badge-pill gradient-1">@ViewBag.MessageCount</span>
                 </a>
-            }            
+            }
         </div>
-        @if (Model.Any())
-        {
-            <div class="dropdown-content-body">
+        <div class="dropdown-content-body">
+            @if (Model.Any())
+            {
                 <ul>
                     @foreach (var message in Model)
                     {
                         <li class="@(message.IsRead ? "notification-unread":"")">
                             <a asp-controller="Contact" asp-action="Detail" asp-area="Admin" asp-route-contactId="@message.Id">
+                                <img class="float-left mr-3 avatar-img" src="~/admin/img/avatar/defaultUserAvatar.png" alt="@message.Name">
                                 <div class="notification-content">
                                     <div class="notification-heading">@message.Name</div>
-                                    <div class="notification-timestamp">@message.CreatedDate.ToString("d")</div>
+                                    <div class="notification-timestamp">@message.CreatedDate.AsTimeAgo()</div>
                                     <div class="notification-text">@message.MessageText ...</div>
                                 </div>
                             </a>
                         </li>
                     }
                 </ul>
+            }
+            else
+            {
+                <div>Herhangi bir mesaj iletilmemiş.</div>
+            }
+        </div>
 
-            </div>
-        }        
+
     </div>
 </li>

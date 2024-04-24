@@ -21,13 +21,23 @@
                 </ul>
             </li>
 
+            <li class="nav-label">Yorum</li>
+            <li>
+                <a class="has-arrow" href="javascript:void()" aria-expanded="true">
+                    <i class="icon-speech menu-icon"></i><span class="nav-text">Yorumlar</span>
+                </a>
+                <ul aria-expanded="true">
+                    <li><a asp-controller="Comment" asp-action="Index" asp-area="Admin">Yorumlar</a></li>
+                </ul>
+            </li>
+
             <li class="nav-label">Mesaj</li>
             <li>
                 <a class="has-arrow" href="javascript:void()" aria-expanded="true">
                     <i class="icon-envelope-letter menu-icon"></i><span class="nav-text">Mesaj</span>
                 </a>
                 <ul aria-expanded="true">
-                    <li><a asp-controller="Contact" asp-action="Index" asp-area="Admin">İletilen Mesajlar</a></li>
+                    <li><a asp-controller="Contact" asp-action="Index" asp-area="Admin">Mesajlarım</a></li>
                 </ul>
             </li>
 

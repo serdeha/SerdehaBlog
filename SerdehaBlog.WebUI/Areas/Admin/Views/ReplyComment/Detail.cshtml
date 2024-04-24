@@ -1,0 +1,47 @@
+﻿@model DetailReplyCommentDto
+
+@{
+    ViewData["Title"] = $"{Model.CreatedByName} Yorumunu Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">@Model.CreatedByName İsimli Kişinin Yorumu</h4>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Makale</label>
+                    <input type="text" class="form-control input-rounded" asp-for="CommentName" placeholder="Yorum Yapılan" readonly>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>İsim</label>
+                    <input type="text" class="form-control input-rounded" asp-for="CreatedByName" placeholder="Yorum Yapan" readonly>
+                </div>               
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Tarih</label>
+                    <input type="text" class="form-control input-rounded" asp-for="CreatedDate" placeholder="Tarih" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Yorum</label>
+            <textarea class="form-control" placeholder="Yorum" asp-for="Text" readonly rows="15"></textarea>
+        </div>
+
+
+        <div class="form-group">
+            <a class="btn mb-1 btn-rounded btn-info" asp-controller="Comment" asp-action="Detail" asp-area="Admin" asp-route-commentId="@Model.CommentId">Geri Dön</a>
+        </div>
+    </div>
+</div>
+

@@ -12,17 +12,19 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace SerdehaBlog.WebUI.Controllers
 {
-	[AllowAnonymous]
-	public class CommentController : Controller
+    [AllowAnonymous]
+    public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
         private readonly IReplyCommentService _replyCommentService;
+        private readonly INotificationService _notificationService;
         private readonly IMapper _mapper;
 
-        public CommentController(ICommentService commentService, IReplyCommentService replyCommentServic, IMapper mapper)
+        public CommentController(ICommentService commentService, IReplyCommentService replyCommentServic, INotificationService notificationService, IMapper mapper)
         {
             _commentService = commentService;
             _replyCommentService = replyCommentServic;
+            _notificationService = notificationService;
             _mapper = mapper;
         }
 
@@ -33,9 +35,18 @@ namespace SerdehaBlog.WebUI.Controllers
             CommentValidator validator = new CommentValidator();
             ValidationResult result = await validator.ValidateAsync(comment);
             if (result.IsValid)
-            {
+            {               
                 comment.IpAddress = Request.HttpContext.Connection.RemoteIpAddress!.ToString();
-                _commentService.Add(comment);
+                comment.IsActive = false;
+                await _commentService.AddAsync(comment);
+
+                await _notificationService.AddAsync(new Notification
+                {
+                    Title = $"{comment.CreatedByName} Bir Yorum Bıraktı!",
+                    NotificationIcon = "icon-speech",
+                    CommentId = comment.Id
+                });
+
                 return Json(new { ResultStatus = true, Data = comment }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve
@@ -44,7 +55,7 @@ namespace SerdehaBlog.WebUI.Controllers
 
 
             string errors = string.Empty;
-            foreach(var error in result.Errors)
+            foreach (var error in result.Errors)
             {
                 errors += $"*{error.ErrorMessage}<br>";
             }
@@ -58,15 +69,24 @@ namespace SerdehaBlog.WebUI.Controllers
             ReplyComment replyComment = _mapper.Map<ReplyComment>(addReplyCommentDto);
             ReplyCommentValidator validator = new ReplyCommentValidator();
             ValidationResult result = await validator.ValidateAsync(replyComment);
-            if(result.IsValid)
+            if (result.IsValid)
             {
                 replyComment.IpAddress = Request.HttpContext.Connection.RemoteIpAddress!.ToString();
-                _replyCommentService.Add(replyComment);
-				return Json(new { ResultStatus = true, Data = replyComment }, new JsonSerializerOptions
-				{
-					ReferenceHandler = ReferenceHandler.Preserve
-				});
-			}
+                replyComment.IsActive = false;
+                await _replyCommentService.AddAsync(replyComment);
+
+                await _notificationService.AddAsync(new Notification
+                {
+                    Title = $"{replyComment.CreatedByName} Bir Yorum Bıraktı!",
+                    NotificationIcon = "icon-speech",
+                    CommentId = replyComment.CommentId
+                });
+
+                return Json(new { ResultStatus = true, Data = replyComment }, new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve
+                });
+            }
 
             string errors = string.Empty;
             foreach (var error in result.Errors)

@@ -31,6 +31,8 @@ namespace SerdehaBlog.Core.Extensions
 			serviceCollection.AddScoped<IContactService, ContactManager>();
             serviceCollection.AddScoped<IAboutRepository, EfAboutRepository>();
             serviceCollection.AddScoped<IAboutService, AboutManager>();
+            serviceCollection.AddScoped<INotificationRepository, EfNotificationRepository>();
+            serviceCollection.AddScoped<INotificationService, NotificationManager>(); 
 
             return serviceCollection;
         }

@@ -5,6 +5,7 @@
         Default = 0,
         Blog = 1,
         Author = 2,
-        BlogPost = 3
+        BlogPost = 3,
+        Avatar = 4
     }
 }
