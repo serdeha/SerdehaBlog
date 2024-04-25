@@ -7,7 +7,7 @@
                     <i class="icon-book-open menu-icon"></i><span class="nav-text">Makale</span>
                 </a>
                 <ul aria-expanded="true">
-                    <li><a href="/Admin/Makale/">Makaleler</a></li>
+                    <li><a asp-controller="Article" asp-action="Index" asp-area="Admin">Makaleler</a></li>
                 </ul>
             </li>
 
@@ -17,7 +17,7 @@
                     <i class="icon-folder-alt menu-icon"></i><span class="nav-text">Kategori</span>
                 </a>
                 <ul aria-expanded="true">
-                    <li><a asp-controller="Category" asp-action="Anasayfa" asp-area="Admin">Kategoriler</a></li>
+                    <li><a asp-controller="Category" asp-action="Index" asp-area="Admin">Kategoriler</a></li>
                 </ul>
             </li>
 

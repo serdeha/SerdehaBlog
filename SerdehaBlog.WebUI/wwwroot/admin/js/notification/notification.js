@@ -4,6 +4,21 @@
     }
 });
 
+function RefreshNavigationBar() {
+    $.ajax({
+        url: '/Admin/Notification/RefreshNavigationBar/',
+        type: 'GET',
+        success: function (result) {
+
+            $('#navBarResult').html(result);
+        },
+        error: function (xhr, status, error) {
+
+            console.error(xhr.responseText);
+        }
+    });
+}
+
 $(function () {
     $.ajax({
         url: '/Admin/Notification/GetNotifications/',
@@ -86,7 +101,6 @@ $(function () {
                         success: function (response) {
 
                             const parsedData = JSON.parse(response);
-                            console.log(parsedData);
 
                             if (parsedData.ResultStatus === false) {
                                 toastr.error('Bildirim onaylanırken bir hata oluştu.', 'Bildirim Onaylanamadı!');
@@ -106,6 +120,8 @@ $(function () {
                                 ];
 
                                 table.row(tableRow).data(updatedTableData).draw();
+
+                                RefreshNavigationBar();
 
                                 toastr.success(`${parsedData.Data.Title} bildirimi başarıyla onaylandı.`, 'Bildirim Başarıyla Onaylandı!');
                             }
@@ -140,7 +156,6 @@ $(function () {
                         success: function (response) {
 
                             const parsedData = JSON.parse(response);
-                            console.log(parsedData);
 
                             if (parsedData.ResultStatus === false) {
                                 toastr.error('Bildirim durumu değişirken bir hata oluştu.', 'Bildirim Durumu Değiştirlemedi!');
@@ -161,7 +176,9 @@ $(function () {
 
                                 table.row(tableRow).data(updatedTableData).draw();
 
-                                toastr.success(`${parsedData.Data.Title} bildirim durumu başarıyla değişti.`, 'Bildirim Durumu Değişti!');
+                                RefreshNavigationBar();
+
+                                toastr.success(`${parsedData.Data.Title} bildirim durumu başarıyla değişti.`, 'Bildirim Durumu Değişti!');                                
                             }
                         },
                         error: function (err) {
@@ -174,3 +191,5 @@ $(function () {
         }
     })
 });
+
+

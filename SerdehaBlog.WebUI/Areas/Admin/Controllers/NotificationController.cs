@@ -86,5 +86,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
 
             return Json(JsonSerializer.Serialize(new { ResultStatus = false }));
         }
+
+        public IActionResult RefreshNavigationBar()
+        {
+            return PartialView("_NavbarPartialView");
+        }
     }
 }

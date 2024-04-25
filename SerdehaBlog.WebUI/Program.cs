@@ -65,8 +65,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
 app.UseStaticFiles();
+app.UseDeveloperExceptionPage();
 app.UseStatusCodePagesWithReExecute("/Error/{0}");
 
 app.UseRouting();
@@ -81,5 +81,6 @@ app.MapControllerRoute(
     );
 app.MapControllerRoute("default", "{controller=Blog}/{action=Index}/{id?}");
 app.MapControllerRoute("article", "{title}/{articleId}", new { controller = "Blog", action = "ReadMore", Area = "" });
+
 
 app.Run();

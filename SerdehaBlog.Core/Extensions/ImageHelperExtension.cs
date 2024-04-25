@@ -64,6 +64,9 @@ namespace SerdehaBlog.Core.Extensions
                         case SectionType.Avatar:
                             image.Mutate(x => x.Resize(50, 50, KnownResamplers.Lanczos3));
                             break;
+                        case SectionType.BlogLogo:
+                            image.Mutate(x => x.Resize(118, 26, KnownResamplers.Lanczos3));
+                            break;
                         case SectionType.Default:
                             break;
                     }

@@ -20,11 +20,15 @@ namespace SerdehaBlog.WebUI.ViewComponents.Comment
 
         public async Task<IViewComponentResult> InvokeAsync(int articleId, int commentPage = 1)
         {
-            List<ListCommentDto> comments = _mapper.Map<List<ListCommentDto>>(await _commentService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.ArticleId == articleId, x=>x.ReplyComments!));
+            int replyCount = 0;
+            List<ListCommentDto> comments = _mapper.Map<List<ListCommentDto>>(await _commentService.GetAllWithFilterAsync(x => x.IsActive && !x.IsDeleted && x.ArticleId == articleId, x => x.ReplyComments!));
             comments.ForEach(comment =>
             {
                 comment.ReplyComments = comment.ReplyComments!.Where(reply => reply.IsActive && !reply.IsDeleted).ToList();
+                replyCount += comment.ReplyComments.Count;
             });
+
+            ViewBag.MessageCount = comments.Count + replyCount;
             return View(comments);
         }
     }

@@ -35,8 +35,9 @@
                 </a>
             </div>
         </div>
-
-        @await Html.PartialAsync("_NavbarPartialView")
+        <div id="navBarResult">
+            @await Html.PartialAsync("_NavbarPartialView")
+        </div>        
         @await Html.PartialAsync("_SidebarPartialView")
         <div class="content-body">
 

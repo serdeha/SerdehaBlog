@@ -10,7 +10,7 @@
             <h4 class="mb-0">Site Ayarlarını Güncelle</h4>
         </div>
         <hr>
-        <form asp-controller="Settings" asp-action="Index" asp-area="Admin" method="post">
+        <form asp-controller="Settings" asp-action="Index" asp-area="Admin" method="post" enctype="multipart/form-data">
 
             @if (ViewData.ModelState.ErrorCount > 0)
             {
@@ -44,7 +44,11 @@
                 <label>Site Açıklaması</label>
                 <textarea class="form-control" asp-for="SeoDescription" placeholder="Site Açıklaması" rows="7"></textarea>
                 <span asp-validation-for="SeoDescription" class="text text-danger"></span>
-            </div>         
+            </div>
+
+            <div class="form-group">
+                <input name="settingsImageFile" type="file" class="dropify" data-height="100" />
+            </div>
 
             <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
             <a class="btn mb-1 btn-rounded btn-danger" asp-controller="Home" asp-action="Index" asp-area="Admin">Vazgeç</a>
@@ -52,3 +56,14 @@
     </div>
 </div>
 
+@section Css {
+    <link href="~/admin/assets/plugins/dropify/dist/css/dropify.min.css" rel="stylesheet" />
+}
+
+
+@section Scripts {
+    <script src="~/admin/assets/plugins/dropify/dist/js/dropify.min.js"></script>
+    <script type="text/javascript">
+        $('.dropify').dropify();
+    </script>
+}

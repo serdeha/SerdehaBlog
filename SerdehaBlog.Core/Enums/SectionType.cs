@@ -6,6 +6,7 @@
         Blog = 1,
         Author = 2,
         BlogPost = 3,
-        Avatar = 4
+        Avatar = 4,
+        BlogLogo = 5
     }
 }

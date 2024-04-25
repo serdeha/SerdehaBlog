@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SerdehaBlog.Business.Absract;
 using SerdehaBlog.Entity.Concrete;
 using SerdehaBlog.WebUI.Dtos.ArticleDto;
+using System.Net;
 using X.PagedList;
 
 namespace SerdehaBlog.WebUI.Controllers
@@ -62,7 +63,7 @@ namespace SerdehaBlog.WebUI.Controllers
                 return View(article);
             }
 
-            return NotFound(404);
+            return NotFound();
         }
     }
 }

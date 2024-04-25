@@ -1,4 +1,18 @@
-﻿$(function () {
+﻿function RefreshNavigationBar() {
+    $.ajax({
+        url: '/Admin/Notification/RefreshNavigationBar/',
+        type: 'GET',
+        success: function (result) {
+
+            $('#navBarResult').html(result);
+        },
+        error: function (xhr, status, error) {
+
+            console.error(xhr.responseText);
+        }
+    });
+}
+$(function () {
     $(document).on('click', '#readContact', function (event) {
         event.stopPropagation();
         event.preventDefault();
@@ -18,6 +32,7 @@
                     return;
                 } else {
                     toastr.success(`${parsedData.Data.Name} kişinin mesajı başarıyla okundu.`, 'Mesaj Başarıyla Okundu!');
+                    RefreshNavigationBar();
                     $('#readContact').fadeOut(400);
                 }
             }
