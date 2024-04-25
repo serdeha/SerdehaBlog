@@ -31,7 +31,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
             _categoryService = categoryService;
         }
-
+                
         public IActionResult Index()
         {
             return View();

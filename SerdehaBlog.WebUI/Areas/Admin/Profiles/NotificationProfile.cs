@@ -9,6 +9,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Profiles
         public NotificationProfile()
         {
             CreateMap<Notification, ListNotificationDto>().ReverseMap();
+            CreateMap<Notification, ConfirmNotificationDto>().ReverseMap();
+            CreateMap<Notification, UnconfirmNotificationDto>().ReverseMap();
         }
     }
 }

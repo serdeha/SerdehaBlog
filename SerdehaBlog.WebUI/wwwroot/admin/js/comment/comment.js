@@ -149,7 +149,7 @@ $(function () {
                             const parsedData = JSON.parse(response);
 
                             if (parsedData.ResultStatus === false) {
-                                toastr.error('Yorum kaldırılırken ona bir hata oluştu.', 'Yorum Onaylanamadı!');
+                                toastr.error('Yorum kaldırılırken bir hata oluştu.', 'Yorum Onaylanamadı!');
                                 return;
                             } else {
                                 const tableRow = $(`[name="${id}"]`);
