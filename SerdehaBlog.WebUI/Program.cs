@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SerdehaBlog.Core.Extensions;
+using SerdehaBlog.Core.TagHelpers;
 using SerdehaBlog.Data.Concrete.EntityFramework.Contexts;
 using SerdehaBlog.Entity.Concrete;
 
@@ -21,6 +22,8 @@ builder.Services.Configure<WebsiteInfo>(builder.Configuration.GetSection("Websit
 builder.Services.ConfigureWritable<WebsiteInfo>(builder.Configuration.GetSection("WebsiteInfo"));
 builder.Services.Configure<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
 builder.Services.ConfigureWritable<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
+builder.Services.Configure<GoogleAnalyticsOptions>(builder.Configuration.GetSection("GoogleAnalytics"));
+builder.Services.Configure<GoogleAdsenseOptions>(builder.Configuration.GetSection("GoogleAdsense"));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();

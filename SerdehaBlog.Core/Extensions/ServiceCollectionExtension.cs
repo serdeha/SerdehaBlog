@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -6,6 +7,7 @@ using SerdehaBlog.Business.Absract;
 using SerdehaBlog.Business.Concrete;
 using SerdehaBlog.Core.Helpers.Abstract;
 using SerdehaBlog.Core.Helpers.Concrete;
+using SerdehaBlog.Core.TagHelpers;
 using SerdehaBlog.Data.Absract;
 using SerdehaBlog.Data.Concrete.EntityFramework.Repositories;
 using SerdehaBlog.Data.UnitOfWork;
@@ -32,7 +34,9 @@ namespace SerdehaBlog.Core.Extensions
             serviceCollection.AddScoped<IAboutRepository, EfAboutRepository>();
             serviceCollection.AddScoped<IAboutService, AboutManager>();
             serviceCollection.AddScoped<INotificationRepository, EfNotificationRepository>();
-            serviceCollection.AddScoped<INotificationService, NotificationManager>(); 
+            serviceCollection.AddScoped<INotificationService, NotificationManager>();
+            serviceCollection.AddTransient<ITagHelperComponent, GoogleAnalyticsTagHelper>();
+            serviceCollection.AddTransient<ITagHelperComponent, GoogleAdsenseTagHelper>();
 
             return serviceCollection;
         }
