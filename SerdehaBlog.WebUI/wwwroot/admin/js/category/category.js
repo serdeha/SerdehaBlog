@@ -29,7 +29,7 @@ $(function () {
                         `<span class='badge badge-${value.ArticleCount <= 0 ? "danger" : "success"} text-white'>${value.ArticleCount}</span>`,
                         `<span class='badge badge-pill badge-${value.IsActive ? "success" : "danger"} text-white'>${value.IsActive ? "Aktif" : "Pasif"}</span>`,
                         `
-                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Category/Update?categoryId=${value.Id}">
+                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Kategori/Guncelle?categoryId=${value.Id}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1 deleteCategory text-white" data-categoryId="${value.Id}" data-title="${value.Name}">

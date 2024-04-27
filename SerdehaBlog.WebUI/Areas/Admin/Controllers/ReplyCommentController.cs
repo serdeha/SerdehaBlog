@@ -26,6 +26,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/AltYorum/Detay/{altyorumId?}")]
+        [Route("/Admin/ReplyComment/Detay/{altyorumId?}")]
         public async Task<IActionResult> Detail(int replyCommentId)
         {
             DetailReplyCommentDto replyComment = _mapper.Map<DetailReplyCommentDto>(await _replyCommentService.GetWithFilterAsync(x => x.Id == replyCommentId && !x.IsDeleted, x => x.Comment!));

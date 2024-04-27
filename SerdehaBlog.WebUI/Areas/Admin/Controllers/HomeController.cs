@@ -7,7 +7,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
 	[Area("Admin")]
 	public class HomeController : Controller
 	{
-		public IActionResult Index()
+        [Route("/Admin/Anasayfa/")]
+        [Route("/Admin/Home/")]
+        [Route("/Admin/Home/Index/")]
+        public IActionResult Index()
 		{
 			return View();
 		}

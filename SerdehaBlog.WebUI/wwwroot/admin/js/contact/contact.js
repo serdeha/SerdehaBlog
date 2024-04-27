@@ -31,7 +31,7 @@ $(function () {
                         `<span class='badge badge-pill badge-${value.IsRead ? "success" : "danger"} text-white'>${value.IsRead ? "Okundu" : "Okunmadı"}</span>`,
                         moment(value.CreatedDate).fromNow(),
                         `
-                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Contact/Detail?contactId=${value.Id}">
+                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Iletisim/Detay?contactId=${value.Id}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1 deleteContact text-white" data-contactId="${value.Id}" data-title="${value.Name}">

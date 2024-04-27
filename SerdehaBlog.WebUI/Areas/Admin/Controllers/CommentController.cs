@@ -25,6 +25,9 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/Yorumlar/")]
+        [Route("/Admin/Comment/Index/")]
+        [Route("/Admin/Comment/")]
         public IActionResult Index()
         {
             return View();
@@ -44,7 +47,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return Json(JsonSerializer.Serialize(new { ResultStatus = false }));
         }
 
-
+        [Route("/Admin/Yorum/Detay/{yorumId?}")]
+        [Route("/Admin/Comment/Detail/{yorumId?}")]
         public async Task<IActionResult> Detail(int commentId)
         {
             TempData["CommentId"] = commentId;

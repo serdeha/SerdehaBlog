@@ -31,6 +31,9 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/Iletisim/")]
+        [Route("/Admin/Contact/Index/")]
+        [Route("/Admin/Contact/")]
         public IActionResult Index()
         {
             return View();
@@ -55,6 +58,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return Json(JsonSerializer.Serialize(new { ResultStatus = false }));
         }
 
+        [Route("/Admin/Iletisim/Detay/{contactId?}")]
+        [Route("/Admin/Contact/Detail/{contactId?}")]
         [HttpGet]
         public async Task<IActionResult> Detail(int contactId)
         {
@@ -62,12 +67,16 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return contactDto != null ? View(contactDto) : NotFound(404);
         }
 
+        [Route("/Admin/Iletisim/Ayarlar/")]
+        [Route("/Admin/Contact/Settings/")]
         [HttpGet]
         public IActionResult Settings()
         {
             return View(_contactInfo);
         }
 
+        [Route("/Admin/Iletisim/Ayarlar/")]
+        [Route("/Admin/Contact/Settings/")]
         [HttpPost]
         public IActionResult Settings(ContactInfo contactInfo)
         {
@@ -83,7 +92,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 x.PhoneValue = contactInfo.PhoneValue;
             });
             TempData["IsSuccess"] = "İletişim başarıyla güncellendi.";
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            return Redirect("/Admin/Anasayfa/");
         }
 
         public async Task<JsonResult> GetContacts()

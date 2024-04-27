@@ -21,12 +21,16 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _websiteWritableOptions = websiteWritableOptions;
         }
 
+        [Route("/Admin/Ayarlar/")]
+        [Route("/Admin/Settings/Index")]
         [HttpGet]
         public IActionResult Index()
         {
             return View(_websiteInfo);
         }
 
+        [Route("/Admin/Ayarlar/")]
+        [Route("/Admin/Settings/Index")]
         [HttpPost]
         public IActionResult Index(WebsiteInfo websiteInfo, IFormFile? settingsImageFile)
         {
@@ -44,7 +48,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 }
             });
             TempData["IsSuccess"] = "Site ayarları başarıyla güncellendi.";
-            return RedirectToAction("Index", "Home", new { area = "Admin" });
+            return Redirect("/Admin/Anasayfa/");
         }
     }
 }

@@ -35,7 +35,7 @@ $(function () {
                         `<span class="badge badge-pill badge-${value.IsActive ? "success" : "danger"} text-white">${value.IsActive ? "Paylaşıldı" : "Taslak"}</span>`,
                         `<span class="badge badge-pill badge-${value.IsCarousel ? "success" : "danger"} text-white">${value.IsCarousel ? "Evet" : "Hayır"}</span>`,
                         `
-                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Article/Update?articleId=${value.Id}">
+                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Makale/Guncelle?articleId=${value.Id}">
                                         <i class="fa fa-edit"></i>
                                     </a>
                                     <a class="btn btn-danger btn-sm m-1 deleteArticle text-white" data-articleId="${value.Id}" data-title="${value.Title}">

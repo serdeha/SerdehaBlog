@@ -27,6 +27,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/Hakkimda/")]
+        [Route("/Admin/Hakkimda/Index/")]
+        [Route("/Admin/About/Index/")]
+        [Route("/Admin/About/")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -34,6 +38,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return updateAboutDto != null ? View(updateAboutDto) : NotFound(404);
         }
 
+        [Route("/Admin/Hakkimda/")]
+        [Route("/Admin/Hakkimda/Index/")]
+        [Route("/Admin/About/Index/")]
+        [Route("/Admin/About/")]
         [HttpPost]
         public async Task<IActionResult> Index(UpdateAboutDto updateAboutDto, IFormFile aboutImageFile)
         {
@@ -53,7 +61,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 about.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
                 await _aboutService.UpdateAsync(about);
                 TempData["IsSuccess"] = $"Hakkımda sayfası başarıyla güncellendi.";
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                return Redirect("/Admin/Anasayfa/");
             }
 
             foreach (var error in result.Errors)

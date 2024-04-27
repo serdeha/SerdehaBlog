@@ -30,7 +30,7 @@ $(function () {
                         `<span class='badge badge-pill badge-${value.IsActive ? "success" : "warning"} text-white'>${value.IsActive ? "Onaylanmış" : "İncelemede"}</span>`,
                         `
                             ${value.IsActive ? '<a class="btn btn-info btn-sm m-1 text-white statusComment" data-status="' + (value.IsActive ? true : false) + '" data-commentId="' + value.Id + '" data-title="' + value.CreatedByName + '"><i class="fa fa-times"></i></a>' : '<a class="btn btn-success btn-sm m-1 text-white statusComment" data-status="' + (value.IsActive ? true : false) + '" data-commentId="' + value.Id + '" data-title="' + value.CreatedByName + '"><i class="fa fa-check"></i></a>'}
-                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Comment/Detail?commentId=${value.Id}">
+                             <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Yorum/Detay?commentId=${value.Id}">
                                         <i class="fa fa-edit"></i>
                              </a>
                              <a class="btn btn-danger btn-sm m-1 deleteComment text-white" data-commentId="${value.Id}" data-title="${value.CreatedByName}">
@@ -103,7 +103,7 @@ $(function () {
                                     `<span class='badge badge-pill badge-${parsedData.Data.IsActive ? "success" : "warning"} text-white'>${parsedData.Data.IsActive ? "Onaylanmış" : "İncelemede"}</span>`,
                                     `
                                     ${parsedData.Data.IsActive ? '<a class="btn btn-info btn-sm m-1 text-white statusComment" data-status="' + (parsedData.Data.IsActive ? true : false) + '" data-commentId="' + parsedData.Data.Id + '" data-title="' + parsedData.Data.CreatedByName + '"><i class="fa fa-times"></i></a>' : '<a class="btn btn-success btn-sm m-1 text-white statusComment" data-status="' + (parsedData.Data.IsActive ? true : false) + '" data-commentId="' + parsedData.Data.Id + '" data-title="' + parsedData.Data.CreatedByName + '"><i class="fa fa-check"></i></a>'}
-                                     <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Comment/Detail?commentId=${parsedData.Data.Id}">
+                                     <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Yorum/Detay?commentId=${parsedData.Data.Id}">
                                                 <i class="fa fa-edit"></i>
                                      </a>
                                      <a class="btn btn-danger btn-sm m-1 deleteComment text-white" data-commentId="${parsedData.Data.Id}" data-title="${parsedData.Data.CreatedByName}">
@@ -161,7 +161,7 @@ $(function () {
                                     `<span class='badge badge-pill badge-${parsedData.Data.IsActive ? "success" : "warning"} text-white'>${parsedData.Data.IsActive ? "Onaylanmış" : "İncelemede"}</span>`,
                                     `
                                     ${parsedData.Data.IsActive ? '<a class="btn btn-info btn-sm m-1 text-white statusComment" data-status="' + (parsedData.Data.IsActive ? true : false) + '" data-commentId="' + parsedData.Data.Id + '" data-title="' + parsedData.Data.CreatedByName + '"><i class="fa fa-times"></i></a>' : '<a class="btn btn-success btn-sm m-1 text-white statusComment" data-status="' + (parsedData.Data.IsActive ? true : false) + '" data-commentId="' + parsedData.Data.Id + '" data-title="' + parsedData.Data.CreatedByName + '"><i class="fa fa-check"></i></a>'}
-                                     <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Comment/Detail?commentId=${parsedData.Data.Id}">
+                                     <a class="btn btn-warning btn-sm m-1 text-white" href="/Admin/Yorum/Detay?commentId=${parsedData.Data.Id}">
                                                 <i class="fa fa-edit"></i>
                                      </a>
                                      <a class="btn btn-danger btn-sm m-1 deleteComment text-white" data-commentId="${parsedData.Data.Id}" data-title="${parsedData.Data.CreatedByName}">

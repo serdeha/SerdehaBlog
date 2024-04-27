@@ -25,6 +25,9 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/Bildirimler/")]
+        [Route("/Admin/Notification/Index/")]
+        [Route("/Admin/Notification/")]
         public IActionResult Index()
         {
             return View();

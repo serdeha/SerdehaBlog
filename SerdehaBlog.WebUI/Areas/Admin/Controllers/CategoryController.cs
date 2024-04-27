@@ -27,11 +27,16 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Route("/Admin/Kategoriler/")]
+        [Route("/Admin/Category/Index/")]
+        [Route("/Admin/Category/")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("/Admin/Kategori/Ekle/")]
+        [Route("/Admin/Category/Add/")]
         [HttpGet]
         public IActionResult Add()
         {
@@ -39,6 +44,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Route("/Admin/Kategori/Ekle/")]
+        [Route("/Admin/Category/Add/")]
         [HttpPost]
         public async Task<IActionResult> Add(AddCategoryDto addCategoryDto)
         {
@@ -48,7 +55,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if (result.IsValid)
             {
                 await _categoryService.AddAsync(category);
-                return RedirectToAction("Index", "Category", new { area = "Admin" });
+                TempData["IsSuccess"] = $"{category.Name} Başarıyla Eklendi.";
+                return Redirect("/Admin/Kategoriler/");
             }
 
             foreach (var error in result.Errors)
@@ -59,6 +67,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return View(addCategoryDto);
         }
 
+        [Route("/Admin/Kategori/Guncelle/{kategoriId?}")]
+        [Route("/Admin/Category/Update/{kategoriId?}")]
         [HttpGet]
         public async Task<IActionResult> Update(int categoryId)
         {
@@ -66,6 +76,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return updateCategoryDto != null ? View(updateCategoryDto) : NotFound(404);
         }
 
+        [Route("/Admin/Kategori/Guncelle/")]
+        [Route("/Admin/Category/Update/")]
         [HttpPost]
         public async Task<IActionResult> Update(UpdateCategoryDto updateCategoryDto)
         {
@@ -79,7 +91,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 category.ModifiedDate = DateTime.Now;
                 await _categoryService.UpdateAsync(category);
                 TempData["IsSuccess"] = $"{category.Name} başarıyla güncellendi.";
-                return RedirectToAction("Index", "Category", new { area = "Admin" });
+                return Redirect("/Admin/Kategoriler/");
             }
 
             foreach (var error in result.Errors)

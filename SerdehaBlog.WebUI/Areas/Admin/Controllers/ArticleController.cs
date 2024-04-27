@@ -31,12 +31,17 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _userManager = userManager;
             _categoryService = categoryService;
         }
-                
+
+        [Route("/Admin/Makaleler/")]
+        [Route("/Admin/Article/Index/")]
+        [Route("/Admin/Article/")]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Route("/Admin/Makale/Ekle/")]
+        [Route("/Admin/Article/Add/")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -44,6 +49,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [Route("/Admin/Makale/Ekle/")]
+        [Route("/Admin/Article/Add/")]
         [HttpPost]
         public async Task<IActionResult> Add(AddArticleDto addArticleDto, IFormFile? articleImageFile)
         {
@@ -54,7 +61,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             {
                 article.ThumbnailPath = articleImageFile != null ? await ImageHelperExtension.UploadWebpImage(articleImageFile, "/admin/img/blog/", SectionType.Blog) : "defaultArticle.png";
                 await _articleService.AddAsync(article);
-                return RedirectToAction("Index", "Article", new { area = "Admin" });
+                return Redirect("/Admin/Makaleler/");
             }
             else
             {
@@ -67,6 +74,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             }
         }
 
+        [Route("/Admin/Makale/Guncelle/{makaleId?}")]
+        [Route("/Admin/Article/Update/{makaleId?}")]
         [HttpGet]
         public async Task<IActionResult> Update(int articleId)
         {
@@ -75,6 +84,8 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return articleDto != null ? View(articleDto) : NotFound(404);
         }
 
+        [Route("/Admin/Makale/Guncelle/")]
+        [Route("/Admin/Article/Update/")]
         [HttpPost]
         public async Task<IActionResult> Update(UpdateArticleDto articleDto, IFormFile? articleImageFile)
         {
@@ -93,7 +104,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 article.ModifiedDate = DateTime.Now;
                 await _articleService.UpdateAsync(article);
                 TempData["IsSuccess"] = $"{article.Title} başarıyla güncellendi.";
-                return RedirectToAction("Index", "Article", new { area = "Admin" });
+                return Redirect("/Admin/Makaleler/");
             }
 
             foreach (var error in result.Errors)
