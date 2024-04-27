@@ -94,5 +94,27 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
         {
             return PartialView("_NavbarPartialView");
         }
+
+        public async Task<JsonResult> Delete(int notificationId)
+        {
+            var notification = await _notificationService.GetByIdAsync(notificationId);
+
+            if(notification != null)
+            {
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                notification.ModifiedDate = DateTime.Now;
+                notification.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
+                notification.IsActive = false;
+                notification.IsRead = true;
+                notification.IsDeleted = true;
+                await _notificationService.UpdateAsync(notification);
+                return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = notification }, new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve
+                }));
+            }
+
+            return Json(JsonSerializer.Serialize(new { ResultStatus = false }));
+        }
     }
 }

@@ -193,3 +193,51 @@ $(function () {
 });
 
 
+$(function () {
+    $(document).on('click', '.deleteNotification', function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const title = $(this).data('title');
+
+        Swal.fire({
+            title: `${title} Bildirimi Silinsin Mi ?`,
+            text: `${title} isimli bildirim silinecektir.`,
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sil",
+            confirmButtonColor: "#e00434",
+            cancelButtonText: "Vazgeç",
+            cancelButtonColor: "#48cc44"
+        }).then((result) => {
+            if (result.value === true) {
+
+                const id = $(this).data('notificationid');
+
+                $.ajax({
+                    url: '/Admin/Notification/Delete/',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { notificationId: id },
+                    success: function (response) {
+
+                        const parsedData = JSON.parse(response);
+
+                        if (parsedData.ResultStatus === false) {
+                            toastr.error('Bildirim silinirken bir hata oluştu.', 'Bildirim Silinemedi!');
+                            return;
+                        } else {
+                            const tableRow = $(`[name="${id}"]`);
+                            table.row(tableRow).remove().draw();
+
+                            toastr.success(`${parsedData.Data.Title} isimli bildirim başarıyla silindi.`, 'Bildirim Silindi!');
+                        }
+                    },
+                    error: function (err) {
+                        toastr.error(`Bildirim silinirken bir hata oluştu. ${err.responseText}`, 'Bildirim Silinemedi!');
+                    }
+                });
+            }
+        });
+    });
+})
