@@ -46,9 +46,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if (contact != null)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                contact.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
-                contact.ModifiedDate = DateTime.Now;
-                await _contactService.UpdateAsync(contact);
+                await _contactService.DeleteAsync(contact, DateTime.Now, string.Concat(user!.FirstName, " ", user.LastName));
                 return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = contact }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve

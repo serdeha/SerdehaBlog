@@ -107,9 +107,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if (category != null)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                category.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
-                category.ModifiedDate = DateTime.Now;
-                await _categoryService.DeleteAsync(category);
+                await _categoryService.DeleteAsync(category, DateTime.Now, string.Concat(user!.FirstName, " ", user.LastName));
                 return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = category }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve

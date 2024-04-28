@@ -102,12 +102,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if(notification != null)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                notification.ModifiedDate = DateTime.Now;
-                notification.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
                 notification.IsActive = false;
                 notification.IsRead = true;
                 notification.IsDeleted = true;
-                await _notificationService.UpdateAsync(notification);
+                await _notificationService.DeleteAsync(notification, DateTime.Now, string.Concat(user!.FirstName, " ", user.LastName));
                 return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = notification }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve

@@ -45,12 +45,14 @@ namespace SerdehaBlog.Business.Concrete
             }
         }
 
-        public async Task<int> DeleteAsync(SocialMedia entity)
+        public async Task<int> DeleteAsync(SocialMedia entity, DateTime modifiedDate, string modifiedByName)
         {
             if (entity != null)
             {
                 entity.IsActive = false;
                 entity.IsDeleted = true;
+                entity.ModifiedDate = modifiedDate;
+                entity.ModifiedByName = modifiedByName;
                 await _unitOfWork.SocialMedia.UpdateAsync(entity);
                 return await _unitOfWork.SaveChangesAsync();
             }

@@ -96,11 +96,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if (replyComment != null)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                replyComment.ModifiedDate = DateTime.Now;
-                replyComment.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
-                replyComment.IsDeleted = true;
-                replyComment.IsActive = false;
-                await _replyCommentService.UpdateAsync(replyComment);
+                await _replyCommentService.DeleteAsync(replyComment, DateTime.Now, string.Concat(user!.FirstName, " ", user.LastName));
                 return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = replyComment }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve

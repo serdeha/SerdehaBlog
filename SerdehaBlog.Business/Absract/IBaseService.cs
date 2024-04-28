@@ -11,7 +11,7 @@ namespace SerdehaBlog.Business.Absract
         void HardDelete(T entity);
         Task<int> AddAsync(T entity);
         Task<int> UpdateAsync(T entity);
-        Task<int> DeleteAsync(T entity);
+        Task<int> DeleteAsync(T entity, DateTime modifiedDate, string modifiedByName);
         Task<int> HardDeleteAsync(T entity);
         List<T> GetAll(Expression<Func<T, bool>>? filter = null);
         List<T> GetAllWithFilter(Expression<Func<T, bool>>? predicate = null, params Expression<Func<T, object>>[] includeProperties);

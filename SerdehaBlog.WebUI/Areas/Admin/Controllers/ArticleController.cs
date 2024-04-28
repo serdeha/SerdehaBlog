@@ -121,9 +121,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             if (article != null)
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
-                article.ModifiedDate = DateTime.Now;
-                article.ModifiedByName = string.Concat(user!.FirstName, " ", user.LastName);
-                await _articleService.DeleteAsync(article);
+                await _articleService.DeleteAsync(article, DateTime.Now, string.Concat(user!.FirstName, " ", user.LastName));
                 return Json(JsonSerializer.Serialize(new { ResultStatus = true, Data = article }, new JsonSerializerOptions
                 {
                     ReferenceHandler = ReferenceHandler.Preserve
