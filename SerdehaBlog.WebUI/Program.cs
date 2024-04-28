@@ -43,8 +43,8 @@ builder.Services.AddIdentity<AppUser,AppRole>(options =>
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.AccessDeniedPath = "/User/Error/AccessDenied";
-    options.LoginPath = "/User/Login/Index";
-    options.LogoutPath = "/User/Login/Logout";
+    options.LoginPath = "/Kullanici/Giris/";
+    options.LogoutPath = "/Kullanici/Cikis/";
     options.Cookie = new CookieBuilder
     {
         Name = "SerdehaBlog",

@@ -25,7 +25,7 @@
                     @foreach(var notification in Model)
                     {
                         <li>
-                            <a asp-controller="Notification" asp-action="Index" asp-area="Admin">
+                            <a href="/Admin/Bildirimler/">
                                 <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="@notification.NotificationIcon"></i></span>
                                 <div class="notification-content">
                                     <h6 class="notification-heading">@notification.Title</h6>

@@ -1,43 +1,43 @@
 ﻿using AutoMapper;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SerdehaBlog.Business.Validations;
-using SerdehaBlog.Core.Extensions;
 using SerdehaBlog.Entity.Concrete;
-using SerdehaBlog.WebUI.Areas.Admin.Dtos.UserDto;
 using SerdehaBlog.WebUI.Areas.User.Models;
 
 namespace SerdehaBlog.WebUI.Areas.User.Controllers
 {
-	[Area("User")]
+    [Area("User")]
 	public class LoginController : Controller
 	{
-		private readonly UserManager<AppUser> _userManager;
 		private readonly SignInManager<AppUser> _signInManager;
-		private readonly IMapper _mapper;
 
 		public LoginController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper)
 		{
-			_userManager = userManager;
 			_signInManager = signInManager;
-			_mapper = mapper;
 		}
 
-		[AllowAnonymous]
+        [Route("/User/Login/Index")]
+        [Route("/User/Login/")]
+        [Route("/Kullanici/Giris/")]
+        [Route("/Kullanici/Giris/Index/")]
+        [AllowAnonymous]
 		[HttpGet]
 		public IActionResult Index()
 		{
 			if (User.Identity!.IsAuthenticated)
 			{
 				TempData["IsNotSuccess"] = "Sisteme zaten giriş yaptınız.";
-				return RedirectToAction("Index", "Home", new { area = "Admin" });
+				return Redirect("/Admin/Anasayfa/");
 			}
 			return View();
 		}
 
-		[AllowAnonymous]
+        [Route("/User/Login/Index")]
+        [Route("/User/Login/")]
+        [Route("/Kullanici/Giris/")]
+        [Route("/Kullanici/Giris/Index/")]
+        [AllowAnonymous]
 		[HttpPost]
 		public async Task<IActionResult> Index(LoginViewModel loginViewModel, string? returnUrl = null)
 		{
@@ -64,11 +64,13 @@ namespace SerdehaBlog.WebUI.Areas.User.Controllers
 			}
 			else
 			{
-				return RedirectToAction("Index", "Home", new { area = "Admin" });
+				return Redirect("/Admin/Anasayfa/");
 			}
 		}
 
-		public async Task<IActionResult> Logout(string? returnUrl = null)
+        [Route("/User/Login/Logout/{returnUrl?}")]
+        [Route("/Kullanici/Cikis/{returnUrl?}")]
+        public async Task<IActionResult> Logout(string? returnUrl = null)
 		{
 			await _signInManager.SignOutAsync();
 			return RedirectToLocal(returnUrl!);

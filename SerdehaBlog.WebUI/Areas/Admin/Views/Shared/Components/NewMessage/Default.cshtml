@@ -25,7 +25,7 @@
                     @foreach (var message in Model)
                     {
                         <li class="@(message.IsRead ? "notification-unread":"")">
-                            <a asp-controller="Contact" asp-action="Detail" asp-area="Admin" asp-route-contactId="@message.Id">
+                            <a asp-controller="Iletisim" asp-action="Detay" asp-area="Admin" asp-route-contactId="@message.Id">
                                 <img class="float-left mr-3 avatar-img" src="~/admin/img/avatar/defaultUserAvatar.png" alt="@message.Name">
                                 <div class="notification-content">
                                     <div class="notification-heading">@message.Name</div>

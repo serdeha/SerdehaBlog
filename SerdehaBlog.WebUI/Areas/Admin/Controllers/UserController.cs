@@ -21,6 +21,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             _signInManager = signInManager;
         }
 
+        [Route("/Admin/Profilim/")]
+        [Route("/Admin/Profilim/Index")]
+        [Route("/Admin/User/Profile/")]
+        [Route("/Admin/User/Profile/Index/")]
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> Profile()
@@ -35,6 +39,10 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             }) : NotFound(404);
         }
 
+        [Route("/Admin/Profilim/")]
+        [Route("/Admin/Profilim/Index")]
+        [Route("/Admin/User/Profile/")]
+        [Route("/Admin/User/Profile/Index/")]
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Profile(UserUpdateViewModel userUpdateViewModel, IFormFile? formFile)
@@ -56,7 +64,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     TempData["IsSuccess"] = "Profiliniz başarıyla güncellendi.";
-                    return RedirectToAction("Index", "Home", new { area = "Admin" });
+                    return Redirect("/Admin/Anasayfa/");
                 }
                 else
                 {
@@ -72,6 +80,9 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             return View(userUpdateViewModel);
         }
 
+        [Route("/Admin/Profilim/SifreDegistir/")]
+        [Route("/Admin/User/ChangePassword/")]
+        [Route("/Admin/User/ChangePassword/Index/")]
         [Authorize]
         [HttpGet]
         public IActionResult ChangePassword()
@@ -87,7 +98,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
             {
                 var user = await _userManager.GetUserAsync(HttpContext.User);
 
-                if (user == null) return RedirectToAction("Index", "Home", new { area = "Admin" });
+                if (user == null) return Redirect("/Admin/Anasayfa/");
 
                 var result = await _userManager.ChangePasswordAsync(user, userChangePasswordViewModel.CurrentPassword!, userChangePasswordViewModel.NewPassword!);
 
@@ -101,7 +112,7 @@ namespace SerdehaBlog.WebUI.Areas.Admin.Controllers
 
                 await _signInManager.RefreshSignInAsync(user);
                 TempData["IsSuccess"] = "Şifreniz başarıyla güncellendi.";
-                return RedirectToAction("Index", "Home", new { area = "Admin" });
+                return Redirect("/Admin/Anasayfa/");
             }
 
             return View();
