@@ -1,0 +1,27 @@
+﻿@using SerdehaBlog.Core.TagHelpers
+@model GoogleAnalyticsOptions
+
+@{
+    ViewData["Title"] = "Google Analytics";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Google Analytics Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Settings" asp-action="Analytics" asp-area="Admin" method="post">
+
+            <div class="form-group">
+                <label>Analytics Takip Kodu</label>
+                <input class="form-control input-rounded" asp-for="TrackingCode" placeholder="Analytics Takip Kodu" required/>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" href="/Admin/Anasayfa/">Vazgeç</a>
+        </form>
+    </div>
+</div>
+

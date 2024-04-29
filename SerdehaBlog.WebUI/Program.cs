@@ -23,7 +23,9 @@ builder.Services.ConfigureWritable<WebsiteInfo>(builder.Configuration.GetSection
 builder.Services.Configure<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
 builder.Services.ConfigureWritable<ContactInfo>(builder.Configuration.GetSection("ContactInfo"));
 builder.Services.Configure<GoogleAnalyticsOptions>(builder.Configuration.GetSection("GoogleAnalytics"));
+builder.Services.ConfigureWritable<GoogleAnalyticsOptions>(builder.Configuration.GetSection("GoogleAnalytics"));
 builder.Services.Configure<GoogleAdsenseOptions>(builder.Configuration.GetSection("GoogleAdsense"));
+builder.Services.ConfigureWritable<GoogleAdsenseOptions>(builder.Configuration.GetSection("GoogleAdsense"));
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();

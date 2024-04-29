@@ -30,6 +30,7 @@
     <Folder Include="wwwroot\frontEnd\img\about\" />
     <Folder Include="wwwroot\img\about\" />
     <Folder Include="wwwroot\img\blog\logo\" />
+    <Folder Include="wwwroot\img\blog\favicon\" />
   </ItemGroup>
 
   <ItemGroup>

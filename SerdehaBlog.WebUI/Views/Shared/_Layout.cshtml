@@ -1,7 +1,6 @@
 ﻿@using Microsoft.Extensions.Options
 @using SerdehaBlog.Entity.Concrete;
 @inject IOptionsSnapshot<WebsiteInfo> WebsiteInfo
-
 @{
     var websiteInfo = WebsiteInfo.Value;
 }
@@ -16,6 +15,7 @@
     <meta name="author" content="@(ViewBag.ArticleAuthor == null ? websiteInfo.SeoAuthor : ViewBag.ArticleAuthor)">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- STYLES -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/img/blog/favicon/@websiteInfo.FaviconPath">
     @await Html.PartialAsync("_CssPartialView")
     @if (IsSectionDefined("Css"))
     {

@@ -7,5 +7,6 @@
 		public string? SeoKeywords { get; set; }
 		public string? SeoAuthor { get; set; }
 		public string? LogoPath { get; set; }
+		public string? FaviconPath { get; set; }
     }
 }

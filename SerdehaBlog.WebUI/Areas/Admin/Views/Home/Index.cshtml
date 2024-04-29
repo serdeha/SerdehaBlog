@@ -1,8 +1,22 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Anasayfa";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+@await Component.InvokeAsync("DashboardCard")
 
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title">
+            Kategorilerine Göre Makaleler
+        </div>
+        <canvas id="categoryChart" width="30" height="10"></canvas>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script src="~/admin/assets/plugins/chart.js/chart.bundle.min.js"></script>
+    <script src="~/admin/js/home/home.js"></script>
+}

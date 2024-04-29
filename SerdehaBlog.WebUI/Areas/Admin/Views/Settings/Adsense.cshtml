@@ -1,0 +1,27 @@
+﻿@using SerdehaBlog.Core.TagHelpers
+@model GoogleAdsenseOptions
+@{
+    ViewData["Title"] = "Google Adsense";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Google Adsense Güncelle</h4>
+        </div>
+        <hr>
+        <form asp-controller="Settings" asp-action="Adsense" asp-area="Admin" method="post">
+
+            <div class="form-group">
+                <label>Adsense Takip Kodu</label>
+                <input class="form-control input-rounded" asp-for="TrackingCode" placeholder="Adsense Takip Kodu" required/>
+            </div>
+
+            <button type="submit" class="btn mb-1 btn-rounded btn-primary">Güncelle</button>
+            <a class="btn mb-1 btn-rounded btn-danger" href="/Admin/Anasayfa/">Vazgeç</a>
+        </form>
+    </div>
+</div>
+
