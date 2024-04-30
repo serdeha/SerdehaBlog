@@ -1,3 +1,4 @@
+using AspNetCore.SEOHelper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,8 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
+app.UseRobotsTxt(builder.Environment.ContentRootPath);
+app.UseXMLSitemap(builder.Environment.ContentRootPath);
 
 //app.MapAreaControllerRoute("areas", "Admin", "{area:Admin}/{controller=Home}/{action=Index}/{id?}");
 app.MapControllerRoute(

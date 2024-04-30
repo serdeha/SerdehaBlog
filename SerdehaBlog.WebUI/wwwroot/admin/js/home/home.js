@@ -52,3 +52,24 @@
         }
     })
 });
+
+$(function () {
+    $.ajax({
+        type: 'GET',
+        url: '/Admin/Home/CreateSiteMap/',
+        dataType: 'json',
+        success: function (response) {
+            const parsedData = JSON.parse(response);
+            if (!parsedData.ResultStatus) {
+                toastr.error('Sitemap kaydı yapılırken bir hata oluştu.', 'Sitemap Oluşturulamadı');
+                return;
+            } else {
+                toastr.success('Sitemap kaydı başarıyla oluşturuldu.', 'Sitemap Oluşturuldu');
+            }
+        },
+        error: function (err) {
+            toastr.error(`${err.responseText}`, 'Hata');
+        }
+    })
+
+})
